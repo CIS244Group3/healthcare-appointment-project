@@ -140,7 +140,7 @@ fabric.properties
 .idea/modules
 *.iml
 *.ipr
-
+.idea/
 
 # User-specific stuff
 .idea/**/workspace.xml
