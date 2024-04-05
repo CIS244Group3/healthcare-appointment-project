@@ -1,4 +1,4 @@
-package com.group3project;
+package com.group3project.Appointment;
 
 import java.time.LocalDate;
 
