@@ -45,13 +45,11 @@ public class MainFx extends Application {
 				.getController();
 		Scene pastAppointmentsScene = new Scene(pastAppointmentsRoot);
 
-		// FXMLLoader fxmlLoaderAppointments = new
-		// FXMLLoader(getClass().getResource("Appointments.fxml"));
-		// Parent appointmentsRoot = fxmlLoaderAppointments.load();
-		// AppointmentController appointmentsCont = (AppointmentController)
-		// fxmlLoaderAppointments
-		// .getController();
-		// Scene appointmentsScene = new Scene(appointmentsRoot);
+		FXMLLoader fxmlLoaderAppointments = new FXMLLoader(getClass().getResource("Appointment.fxml"));
+		Parent appointmentsRoot = fxmlLoaderAppointments.load();
+		AppointmentController appointmentsCont = (AppointmentController) fxmlLoaderAppointments
+				.getController();
+		Scene appointmentsScene = new Scene(appointmentsRoot);
 
 		loginCont.setRegistrationScene(regiScene);
 		registrationCont.setLoginScene(luiScene);
@@ -59,10 +57,11 @@ public class MainFx extends Application {
 		loginCont.setHomepageScene(homepageScene);
 		homepageCont.setLoginScene(luiScene);
 		homepageCont.setContactUsScene(contactUsScene);
-		// homepageCont.setAppointmentScene(appointmentsScene);
+		homepageCont.setAppointmentScene(appointmentsScene);
 		homepageCont.setPastAppointsScene(pastAppointmentsScene);
 		contactPageCont.setHomepageScene(homepageScene);
 		pastAppointmentsCont.setHomepageScene(homepageScene);
+		appointmentsCont.setHomepageScene(homepageScene);
 
 	}
 
