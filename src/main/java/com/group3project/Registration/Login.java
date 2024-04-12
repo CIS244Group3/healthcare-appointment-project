@@ -14,9 +14,6 @@ public class Login {
             String securityQuestion) throws PreviousPasswordDetectedException, SecurityQuestionDoesNotMatchException {
         boolean passwordReset = false;
 
-        // TODO: Retrieve registration object from database that contains security
-        // question
-
         while (!passwordReset) {
 
             try {
@@ -45,9 +42,6 @@ public class Login {
 
     public static void getUsername(String email) {
         boolean usernameReset = false;
-
-        // TODO: Retrieve registration object from database that contains security
-        // question
 
         while (!usernameReset) {
             try {

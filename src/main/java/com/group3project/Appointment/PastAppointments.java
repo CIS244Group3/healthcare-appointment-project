@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class pastAppointments extends Application {
+public class PastAppointments extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Past Doctor Appointments");
