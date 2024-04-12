@@ -12,24 +12,30 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import java.util.*;
 
 public class Appointment extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
 
     private String doctorName;
     private int appointmentDateIndex;
 
     @Override
     public void start(Stage stage) {
-        VBox vbox = new VBox(20);
-        Scene scene = new Scene(vbox, 400, 400);
-        stage.setScene(scene);
-        DatePicker startDatePicker = new DatePicker();
 
-        startDatePicker.setValue(LocalDate.now());
-        ComboBox<String> doctorComboBox = new ComboBox<>();
+        FXMLLoader testUI = new FXMLLoader(getClass().getResource("test.fxml"));
+        System.out.println("Here!");
+        Parent testUIRoot = testUI.load();
+        System.out.println("Past Here!");
+
+        TestController testCont = (TestController) testUI.getController();
+
+        Scene luiScene = new Scene(testUIRoot);
+        this.showUI(luiScene, StageStyle.DECORATED, "Login Is Required", false);
+
         doctorComboBox.getItems().addAll(
                 "General Practitioner",
                 "Gynecologist",
@@ -48,16 +54,16 @@ public class Appointment extends Application {
             System.out.println(this.doctorName);
 
         });
-        Label label = new Label("Appointment Date:");
-        label.setPadding(new Insets(20, 20, 20, 20));
-        label.setMaxWidth(Double.MAX_VALUE);
-        label.setAlignment(Pos.CENTER);
-        vbox.getChildren().add(label);
-        vbox.getChildren().add(startDatePicker);
-        vbox.getChildren().add(doctorComboBox);
-        vbox.getChildren().add(button);
+    }
 
-        vbox.setAlignment(Pos.BASELINE_CENTER);
+    public void showUI(Scene scene, StageStyle stageStyle, String title, boolean resizable) {
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(title);
+
+        stage.initStyle(stageStyle);
+
+        stage.setResizable(resizable);
 
         stage.show();
     }

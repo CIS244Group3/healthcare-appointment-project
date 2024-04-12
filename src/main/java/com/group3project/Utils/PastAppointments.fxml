@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import com.group3project.Appointment.*?>
+
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="506.0" spacing="20.0"
+  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21"
+  fx:controller="com.group3project.Appointment.PastAppointmentsController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+  <children>
+    <TableView fx:id="tableView" prefHeight="286.0" prefWidth="466.0">
+      <columns>
+        <TableColumn fx:id="appointmentsColumn" prefWidth="180.79999160766602" text="Appointments" />
+        <TableColumn fx:id="dateColumn" prefWidth="131.1999969482422" text="Date" />
+        <TableColumn fx:id="timeColumn" prefWidth="154.4000244140625" text="Time" />
+      </columns>
+    </TableView>
+    <Button fx:id="OnBackToHomePage" mnemonicParsing="false" onAction="#display"
+      text="Back To Home Page" />
+    <Label fx:id="lab" text="Past Appointments" />
+  </children>
+</VBox>

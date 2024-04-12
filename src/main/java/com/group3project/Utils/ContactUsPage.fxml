@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import com.group3project.Home.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+   prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: White;"
+   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="com.group3project.Home.HomePageController">
+   <left>
+      <Pane prefHeight="324.0" prefWidth="600.0" style="-fx-background-color: B9DB9F;"
+         BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="211.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="About us">
+               <font>
+                  <Font name="Bell MT" size="48.0" />
+               </font>
+            </Text>
+            <Text layoutX="26.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="At our core, we are dedicated to crafting unparalleled solutions, tirelessly refining every aspect to ensure our product not only meets but exceeds the highest standards of excellence."
+               textAlignment="JUSTIFY" wrappingWidth="163.52772521972656" />
+            <Text layoutX="218.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="Empowering innovation, our mission is to revolutionize industry standards by delivering cutting-edge solutions that enhance user experience, foster growth, and drive success. We are committed to excellence, constantly seeking to surpass expectations and inspire positive change in every endeavor."
+               textAlignment="JUSTIFY" wrappingWidth="163.52772521972656" />
+            <Text layoutX="414.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="Cedar Heights, Colorado, nestled in the scenic foothills of the Rocky Mountains, offers a perfect blend of natural beauty and innovative spirit. For inquiries, reach out to us at info@cedarheightstech.com or call us at (555) 123-4567."
+               textAlignment="JUSTIFY" wrappingWidth="163.52772521972656" />
+            <Text layoutX="252.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="Our Mission" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="43.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="What we believe" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="441.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="Where we are" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </left>
+   <top>
+      <Pane prefHeight="76.0" prefWidth="600.0" style="-fx-background-color: white;"
+         BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnHomePage" layoutX="254.0" layoutY="23.0" mnemonicParsing="false"
+               onAction="#OnHomePageButtonClick" style="-fx-background-color: B9DB9F;"
+               text="Home Page" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

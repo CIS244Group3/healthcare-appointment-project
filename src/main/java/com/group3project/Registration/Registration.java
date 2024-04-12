@@ -4,26 +4,25 @@ public class Registration {
     protected String firstName;
     protected String lastName;
     protected String DOB;
-    protected String address;
-    protected int phone;
+    protected String phone;
     protected String email;
-    protected String securityQuestion;
     protected String username;
     protected String password;
+    protected String confirmPassword;
 
     public Registration() {
 
     }
 
-    public Registration(String firstName, String lastName, String DOB, String address, int phone, String email,
-            String securityQuestion) {
+    public Registration(String username, String firstName, String lastName, String DOB, String phone, String email,
+            String password, String confirmPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.DOB = DOB;
-        this.address = address;
         this.phone = phone;
         this.email = email;
-        this.securityQuestion = securityQuestion;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
 
     }
 
@@ -31,15 +30,39 @@ public class Registration {
         this.username = username;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password, String confirmedPassword) {
+    public void setPassword(String password) {
         boolean setPassword = false;
 
         while (!setPassword) {
-            if (password.equals(confirmedPassword)) {
+            if (this.password.equals(this.confirmPassword)) {
                 this.password = password;
                 setPassword = true;
             }
@@ -51,30 +74,28 @@ public class Registration {
         return password;
     }
 
-    public String getSecurityQuestion() {
-        return securityQuestion;
-    }
-
-    static Registration getRegistrationUsername(String username) throws UsernameNotFoundException {
+    static Registration getRegistrationUsername(String username) throws UsernameExistsException {
         // TODO: connect to database to check if username exists
         String DB_username = "";
 
         if (username != DB_username) {
-            throw new UsernameNotFoundException("Username does not exist");
-        } else {
             return new Registration(username);
+        } else {
+            throw new UsernameExistsException("Username already exists");
         }
 
     }
 
-    static Registration getRegistrationEmail(String email) throws EmailNotFoundException {
+    static Registration getRegistrationEmail(String email) throws EmailExistsExeption {
         // TODO: connect to database to check if username exists
         String DB_email = "";
 
         if (email != DB_email) {
-            throw new EmailNotFoundException("Email does not exist");
-        } else {
             return new Registration(email);
+
+        } else {
+            throw new EmailExistsExeption("Email already exists");
+
         }
 
     }
