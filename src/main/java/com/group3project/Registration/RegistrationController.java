@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -108,31 +110,10 @@ public class RegistrationController implements Initializable {
         try {
 
 
-            if (usernameExists(tfUsername.getText())) {
-                System.out.println("user: " + tfUsername.getText());
-                // Alert usernameExistsAlert = new Alert(Alert.AlertType.WARNING);
-                // usernameExistsAlert.setTitle("ERROR");
-                // usernameExistsAlert.setHeaderText("ERROR");
-                // usernameExistsAlert.setContentText("User exists. Try another user.");
-                // usernameExistsAlert.showAndWait();
-                print("User already exists");
-                tfUsername.setText("");
-                
-                
+            if(!inputValid()){
                 return;
             }
 
-            if (emailExists(tfEmail.getText())) {
-                // Alert emailExistsAlert = new Alert(Alert.AlertType.WARNING);
-                // emailExistsAlert.setTitle("ERROR");
-                // emailExistsAlert.setHeaderText("ERROR");
-                // emailExistsAlert.setContentText("This email already has an account. Try another email.");
-                // emailExistsAlert.showAndWait();
-                print("Email already exists");
-                tfEmail.setText("");
-                return;
-            }
-            
 
             print("Username nor email found, creating user...");
 
@@ -143,6 +124,8 @@ public class RegistrationController implements Initializable {
             tfEmail.getText(), 
             pfPassword.getText(), 
             tfPhoneNumber.getText() );
+            
+
 
         } catch (SQLException e) {
             print("SQL ERR: " + e.getMessage());
@@ -213,6 +196,8 @@ public class RegistrationController implements Initializable {
             System.out.println("usernameexists.After_last()");
 
             if (lastWorked) {
+
+                System.out.println("last worked in username");
                 return true;
             }
         } catch (Exception e) {
@@ -264,10 +249,8 @@ public class RegistrationController implements Initializable {
     private static void createUser(String userName, String firstName, String lastName, String dob, String email,
             String password, String phone) throws SQLException {
 
-        Connection conn = null;
-
         try {
-            String sql = "INSERT INTO patients (username, firstname, lastname, dob, email, userpassword, phone)" +
+            String sql = "INSERT INTO patients (username, firstname, lastname, dob, email, password, phone)" +
                     "VALUES (' " + userName + " ', ' "
                     + firstName
                     + " ', ' " + lastName
@@ -280,18 +263,10 @@ public class RegistrationController implements Initializable {
 
             DbHelper dbHelper = new DbHelper();
 
-            conn = dbHelper.getConnection();
-
-            dbHelper.executeQuery(conn, sql);
-
-            conn.close();
+            dbHelper.execute(sql);
 
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
-        } finally {
-            if (conn != null) {
-                conn.close();
-            }
         }
     }
 
@@ -299,10 +274,86 @@ public class RegistrationController implements Initializable {
         System.out.println(str);
     }
 
+    public boolean inputValid() throws SQLException{
+        if(tfFirstName.getText().equals("")){
+            System.out.println("Input first name");
+            return false;
+        }
+        if(tfLastName.getText().equals("")){
+            System.out.println("Input last name");
+            return false;
+        }
+        if(tfDOB.getValue() == null || tfDOB.getValue().toString().equals("")){
+            System.out.println("Input date of birth");
+            return false;
+        }
+        if(tfUsername.getText().equals("")){
+            System.out.println("Input username");
+            return false;
+        }
+        if(pfPassword.getText().equals("")){
+            System.out.println("Input password");
+            return false;
+        }
+        if(pfConfirmPassword.getText().equals("")){
+            System.out.println("Confirm password");
+            return false;
+        }
+        
+        if(tfPhoneNumber.getText().equals("")){
+            System.out.println("Input phone number");
+            return false;
+        }
+        if(cbGender.getValue() == null || cbGender.getValue().toString().equals("")){
+            System.out.println("Input gender");
+            return false;
+        }
+
+        if (usernameExists(tfUsername.getText())) {
+            System.out.println("user: " + tfUsername.getText());
+            // Alert usernameExistsAlert = new Alert(Alert.AlertType.WARNING);
+            // usernameExistsAlert.setTitle("ERROR");
+            // usernameExistsAlert.setHeaderText("ERROR");
+            // usernameExistsAlert.setContentText("User exists. Try another user.");
+            // usernameExistsAlert.showAndWait();
+            print("User already exists");
+            tfUsername.setText("");
+            
+            
+            return false;
+        }
+
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(tfEmail.getText());
+        boolean emailMatches = matcher.matches();
+
+        if(!emailMatches) {
+            System.out.println("Input a valid email in the format of <username>@<domain>.com");
+            return false;
+        }
+
+        if (emailExists(tfEmail.getText())) {
+            // Alert emailExistsAlert = new Alert(Alert.AlertType.WARNING);
+            // emailExistsAlert.setTitle("ERROR");
+            // emailExistsAlert.setHeaderText("ERROR");
+            // emailExistsAlert.setContentText("This email already has an account. Try another email.");
+            // emailExistsAlert.showAndWait();
+            print("Email already exists");
+            tfEmail.setText("");
+            return false;
+        }
+
+        
+        return true;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cbGender.getItems().addAll(gender);
     }
+
+
 
    
 
