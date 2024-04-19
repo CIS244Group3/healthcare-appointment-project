@@ -5,6 +5,8 @@ public class Patient {
 	private int age;
 	private String address;
 	private Insurance insurance;
+	private String username;
+	private String email;
 
 	public Patient(String name, int age, String address, Insurance insurance) {
 		this.name = name;
@@ -14,9 +16,24 @@ public class Patient {
 
 	}
 
+	public Patient(String name, String username, String email) {
+		this.name = name;
+		this.username = username;
+		this.email = email;
+
+	}
+
 	// Getters
 	public String getName() {
-		return name;
+		return this.name;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public String getEmail() {
+		return this.email;
 	}
 
 	public int getAge() {

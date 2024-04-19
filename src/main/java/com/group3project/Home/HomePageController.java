@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+import com.group3project.Patient_Doctor.Patient;
 import com.group3project.Utils.MainFx;
 
 public class HomePageController {
@@ -49,7 +50,10 @@ public class HomePageController {
 
     public void onHomeButtonClick(ActionEvent event) throws IOException {
         // openNewScene(event, this.homepageScene, "Homepage", false);
-
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Patient patient = (Patient) stage.getUserData();
+        System.out.println(patient.getName());
     }
 
     public void onPastAppointmentButtonClick(ActionEvent event) throws IOException {

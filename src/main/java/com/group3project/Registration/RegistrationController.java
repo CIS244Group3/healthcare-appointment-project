@@ -32,13 +32,12 @@ import javafx.stage.Stage;
 
 import com.group3project.Utils.*;
 
-
 public class RegistrationController implements Initializable {
 
     @FXML
     private ChoiceBox<String> cbGender;
 
-    private String[] gender = {"Male", "Female", "Other"};
+    private String[] gender = { "Male", "Female", "Other" };
 
     @FXML
     private static Hyperlink login;
@@ -66,7 +65,7 @@ public class RegistrationController implements Initializable {
 
     @FXML
     private TextField tfUsername;
-    
+
     @FXML
     private Button btnCreateAccount;
 
@@ -104,9 +103,7 @@ public class RegistrationController implements Initializable {
     @FXML
     void createUser(ActionEvent event) {
 
-
         try {
-
 
             if (usernameExists(tfUsername.getText())) {
                 System.out.println("user: " + tfUsername.getText());
@@ -117,8 +114,7 @@ public class RegistrationController implements Initializable {
                 // usernameExistsAlert.showAndWait();
                 print("User already exists");
                 tfUsername.setText("");
-                
-                
+
                 return;
             }
 
@@ -126,23 +122,23 @@ public class RegistrationController implements Initializable {
                 // Alert emailExistsAlert = new Alert(Alert.AlertType.WARNING);
                 // emailExistsAlert.setTitle("ERROR");
                 // emailExistsAlert.setHeaderText("ERROR");
-                // emailExistsAlert.setContentText("This email already has an account. Try another email.");
+                // emailExistsAlert.setContentText("This email already has an account. Try
+                // another email.");
                 // emailExistsAlert.showAndWait();
                 print("Email already exists");
                 tfEmail.setText("");
                 return;
             }
-            
 
             print("Username nor email found, creating user...");
 
-            createUser(tfUsername.getText(), 
-            tfFirstName.getText(), 
-            tfLastName.getText(), 
-            tfDOB.toString(), 
-            tfEmail.getText(), 
-            pfPassword.getText(), 
-            tfPhoneNumber.getText() );
+            createUser(tfUsername.getText(),
+                    tfFirstName.getText(),
+                    tfLastName.getText(),
+                    tfDOB.toString(),
+                    tfEmail.getText(),
+                    pfPassword.getText(),
+                    tfPhoneNumber.getText());
 
         } catch (SQLException e) {
             print("SQL ERR: " + e.getMessage());
@@ -158,36 +154,36 @@ public class RegistrationController implements Initializable {
 
     // private void printFromDB() throws SQLException {
 
-    //     Connection conn = null;
-    //     try {
-    //         String sql = "SELECT * FROM patients;";
+    // Connection conn = null;
+    // try {
+    // String sql = "SELECT * FROM patients;";
 
-    //         DbHelper dal = new DbHelper();
+    // DbHelper dal = new DbHelper();
 
-    //         conn = dal.getConnection();
+    // conn = dal.getConnection();
 
-    //         ResultSet rs = dal.executeQuery(conn, sql);
+    // ResultSet rs = dal.executeQuery(conn, sql);
 
-    //         while (rs.next()) {
-    //             print(rs.getString("username"));
-    //             print(rs.getString("firstname"));
-    //             print(rs.getString("lastname"));
-    //             print(rs.getString("DOB"));
-    //             print(rs.getString("Phone"));
-    //             print(rs.getString("email"));
-    //             print(rs.getString("userpassword"));
+    // while (rs.next()) {
+    // print(rs.getString("username"));
+    // print(rs.getString("firstname"));
+    // print(rs.getString("lastname"));
+    // print(rs.getString("DOB"));
+    // print(rs.getString("Phone"));
+    // print(rs.getString("email"));
+    // print(rs.getString("userpassword"));
 
-    //         }
+    // }
 
-    //         conn.close();
+    // conn.close();
 
-    //     } catch (Exception ex) {
-    //         System.out.println("Error: " + ex.getMessage());
-    //     } finally {
-    //         if (conn != null) {
-    //             conn.close();
-    //         }
-    //     }
+    // } catch (Exception ex) {
+    // System.out.println("Error: " + ex.getMessage());
+    // } finally {
+    // if (conn != null) {
+    // conn.close();
+    // }
+    // }
 
     // }
 
@@ -205,7 +201,7 @@ public class RegistrationController implements Initializable {
             ResultSet rs = dbHelper.executeQuery(conn, sql);
 
             // if (rs.last()) {
-            //     return true;
+            // return true;
             // }
 
             System.out.println("usernameexists.Before_last()");
@@ -227,9 +223,7 @@ public class RegistrationController implements Initializable {
 
     }
 
-    
-
-    private static boolean emailExists(String email) throws SQLException{
+    private static boolean emailExists(String email) throws SQLException {
 
         Connection conn = null;
 
@@ -275,8 +269,8 @@ public class RegistrationController implements Initializable {
                     + " ', ' " + email
                     + " ', ' " + password
                     + " ', ' " + phone + " ' );";
-                    // + " ' , " +
-                    // + " ' " + gender + " ' ); ";
+            // + " ' , " +
+            // + " ' " + gender + " ' ); ";
 
             DbHelper dbHelper = new DbHelper();
 
@@ -303,9 +297,5 @@ public class RegistrationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cbGender.getItems().addAll(gender);
     }
-
-   
-
-    
 
 }
