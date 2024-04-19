@@ -86,7 +86,7 @@ public class Registration {
 
     }
 
-    static Registration getRegistrationEmail(String email) throws EmailExistsExeption {
+    static Registration getRegistrationEmail(String email) throws EmailExistsException {
         // TODO: connect to database to check if username exists
         String DB_email = "";
 
@@ -94,7 +94,7 @@ public class Registration {
             return new Registration(email);
 
         } else {
-            throw new EmailExistsExeption("Email already exists");
+            throw new EmailExistsException("Email already exists");
 
         }
 

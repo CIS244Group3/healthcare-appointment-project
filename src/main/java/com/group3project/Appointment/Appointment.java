@@ -26,34 +26,34 @@ public class Appointment extends Application {
     @Override
     public void start(Stage stage) {
 
-        FXMLLoader testUI = new FXMLLoader(getClass().getResource("test.fxml"));
-        System.out.println("Here!");
-        Parent testUIRoot = testUI.load();
-        System.out.println("Past Here!");
+        // FXMLLoader testUI = new FXMLLoader(getClass().getResource("test.fxml"));
+        // System.out.println("Here!");
+        // Parent testUIRoot = testUI.load();
+        // System.out.println("Past Here!");
 
-        TestController testCont = (TestController) testUI.getController();
+        // TestController testCont = (TestController) testUI.getController();
 
-        Scene luiScene = new Scene(testUIRoot);
-        this.showUI(luiScene, StageStyle.DECORATED, "Login Is Required", false);
+        // Scene luiScene = new Scene(testUIRoot);
+        // this.showUI(luiScene, StageStyle.DECORATED, "Login Is Required", false);
 
-        doctorComboBox.getItems().addAll(
-                "General Practitioner",
-                "Gynecologist",
-                "Dermatologist",
-                "ENT",
-                "Pulmonologist");
-        doctorComboBox.getSelectionModel().selectFirst();
+        // doctorComboBox.getItems().addAll(
+        //         "General Practitioner",
+        //         "Gynecologist",
+        //         "Dermatologist",
+        //         "ENT",
+        //         "Pulmonologist");
+        // doctorComboBox.getSelectionModel().selectFirst();
 
-        Button button = new Button("Schedule Appointment");
+        // Button button = new Button("Schedule Appointment");
 
-        button.setOnAction(action -> {
-            LocalDate value = startDatePicker.getValue();
-            this.appointmentDateIndex = value.getDayOfMonth();
-            this.doctorName = doctorComboBox.getValue().toString();
-            System.out.println(this.appointmentDateIndex);
-            System.out.println(this.doctorName);
+        // button.setOnAction(action -> {
+        //     LocalDate value = startDatePicker.getValue();
+        //     this.appointmentDateIndex = value.getDayOfMonth();
+        //     this.doctorName = doctorComboBox.getValue().toString();
+        //     System.out.println(this.appointmentDateIndex);
+        //     System.out.println(this.doctorName);
 
-        });
+        // });
     }
 
     public void showUI(Scene scene, StageStyle stageStyle, String title, boolean resizable) {

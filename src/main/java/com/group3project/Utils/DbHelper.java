@@ -26,22 +26,15 @@ public class DbHelper {
 		Connection conn = null;
 		try {
 
-			if (dbtype.equals("sqlite")) {
-				String url = "jdbc:sqlite:" + ProjUtil.getResourcePath(ProjUtil.getProperty("sqlite.dbname"));
-				conn = DriverManager.getConnection(url);
-			} else {
+			Class.forName(ProjUtil.getProperty("db.driver"));
+			System.out.println("Going in " + ProjUtil.getProperty("db.url"));
 
-				Class.forName(ProjUtil.getProperty("db.driver"));
-				System.out.println("Going in " + ProjUtil.getProperty("db.url"));
-
-				conn = DriverManager.getConnection(ProjUtil.getProperty("db.url"));
-				System.out.println("SHould print second");
-				System.out.println(conn);
-
-			}
+			conn = DriverManager.getConnection(ProjUtil.getProperty("db.url"));
+			System.out.println("SHould print second");
+			System.out.println(conn);
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println(e);
 		}
 
 		return conn;
