@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
+import com.group3project.Patient_Doctor.Patient;
 import com.group3project.Utils.MainFx;
 
 public class AppointmentController {
@@ -22,6 +23,12 @@ public class AppointmentController {
 
     @FXML
     private DatePicker datePicker;
+
+    private Patient currentUser;
+
+    public void setCurrentUser(Patient user) {
+        this.currentUser = user;
+    }
 
     @FXML
     void handleComboBox(ActionEvent event) {

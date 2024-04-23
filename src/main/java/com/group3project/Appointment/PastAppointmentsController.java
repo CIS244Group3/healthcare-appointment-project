@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+import com.group3project.Patient_Doctor.Patient;
 import com.group3project.Utils.MainFx;
 
 public class PastAppointmentsController implements Initializable {
@@ -58,6 +59,12 @@ public class PastAppointmentsController implements Initializable {
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
+    }
+
+    private Patient currentUser;
+
+    public void setCurrentUser(Patient user) {
+        this.currentUser = user;
     }
 
     @Override

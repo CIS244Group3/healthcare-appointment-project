@@ -12,57 +12,99 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Objects;
 
+import com.group3project.Appointment.AppointmentController;
+import com.group3project.Appointment.PastAppointmentsController;
 import com.group3project.Patient_Doctor.Patient;
+import com.group3project.Patient_Doctor.UserProfileController;
 import com.group3project.Utils.MainFx;
 
 public class HomePageController {
 
     public ImageView appLogo;
 
-    private void loadScene(String fxmlFile, ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void OnHomePageButtonClick(ActionEvent event) throws IOException {
-        openNewScene(event, this.homepageScene, "Homepage", false);
-
-    }
-
     public void onContactUsButtonClick(ActionEvent event) throws IOException {
-        openNewScene(event, contactUScene, "Contact Us", false);
+        if (this.contactUScene == null) {
+            FXMLLoader fxmlLoaderContactUsPage = new FXMLLoader(
+                    getClass().getResource("../../../fxml/ContactUsPage.fxml"));
+            Parent contactUsRoot = fxmlLoaderContactUsPage.load();
+            Scene contactUsScene = new Scene(contactUsRoot);
+            ContactUsController contactPageCont = (ContactUsController) fxmlLoaderContactUsPage.getController();
+
+            this.setCurrentContactUsCont(contactPageCont);
+            this.setContactUsScene(contactUsScene);
+            this.currentContactUsController.setHomepageScene(((Node) event.getSource()).getScene());
+            this.currentContactUsController.setCurrentUser(this.currentUser);
+        }
+        openNewScene(event, this.contactUScene, "Contact Us", false);
 
     }
 
     public void onAppointmentButtonClick(ActionEvent event) throws IOException {
+        if (this.appointmentScene == null) {
+            FXMLLoader fxmlLoaderAppointments = new FXMLLoader(
+                    getClass().getResource("../../../fxml/Appointment.fxml"));
+            Parent appointmentsRoot = fxmlLoaderAppointments.load();
+            AppointmentController appointmentCont = (AppointmentController) fxmlLoaderAppointments
+                    .getController();
+            Scene appointmentsScene = new Scene(appointmentsRoot);
+
+            this.setAppointmentScene(appointmentsScene);
+            this.setCurrentAppointmentController(appointmentCont);
+            this.currentAppointmentController.setCurrentUser(this.currentUser);
+            this.currentAppointmentController.setHomepageScene(((Node) event.getSource()).getScene());
+        }
         openNewScene(event, this.appointmentScene, "Make an Appointment", false);
 
     }
 
     public void onProfileButtonClick(ActionEvent event) throws IOException {
-        loadScene("Profile.fxml", event);
+        if (this.userProfileScene == null) {
+            FXMLLoader fxmlLoaderUserProfile = new FXMLLoader(
+                    getClass().getResource("../../../fxml/UserProfileUI.fxml"));
+            Parent userProfileRoot = fxmlLoaderUserProfile.load();
+            UserProfileController userProfileController = (UserProfileController) fxmlLoaderUserProfile
+                    .getController();
+
+            Scene userProfileUIScene = new Scene(userProfileRoot);
+            setUserProfileScene(userProfileUIScene);
+            setCurrentuserProfileController(userProfileController);
+            currentUserProfileController.setCurrentUser(this.currentUser);
+            currentUserProfileController.setHomepageScene(((Node) event.getSource()).getScene());
+        }
+        openNewScene(event, this.userProfileScene, "User Profile", false);
     }
 
     public void onHomeButtonClick(ActionEvent event) throws IOException {
         // openNewScene(event, this.homepageScene, "Homepage", false);
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Patient patient = (Patient) stage.getUserData();
-        System.out.println(patient.getName());
+        // Node node = (Node) event.getSource();
+        // Stage stage = (Stage) node.getScene().getWindow();
+        // Patient patient = (Patient) stage.getUserData();
+
+        // System.out.println(patient.toString());
+        System.out.println(this.currentUser.getName());
     }
 
     public void onPastAppointmentButtonClick(ActionEvent event) throws IOException {
+        if (this.pastAppointmentScene == null) {
+            FXMLLoader fxmlLoaderPastAppointments = new FXMLLoader(
+                    getClass().getResource("../../../fxml/PastAppointments.fxml"));
+            Parent pastAppointmentsRoot = fxmlLoaderPastAppointments.load();
+            PastAppointmentsController pastAppointmentsCont = (PastAppointmentsController) fxmlLoaderPastAppointments
+                    .getController();
+
+            Scene pastAppointmentsScene = new Scene(pastAppointmentsRoot);
+            setPastAppointsScene(pastAppointmentsScene);
+            setCurrentPastAppointmentCont(pastAppointmentsCont);
+            currentPastAppointmentsCont.setCurrentUser(this.currentUser);
+            currentPastAppointmentsCont.setHomepageScene(((Node) event.getSource()).getScene());
+        }
         openNewScene(event, this.pastAppointmentScene, "Past Appointments", false);
 
     }
 
     @FXML
-    void onLogOutClick(ActionEvent event) {
+    void onLogOutClick(ActionEvent event) throws IOException {
         logOutScene(event);
     }
 
@@ -90,34 +132,58 @@ public class HomePageController {
     @FXML
     private Button logout;
 
-    private Scene loginScene;
+    private Patient currentUser;
 
-    public void setLoginScene(Scene scene) {
-        loginScene = scene;
+    private PastAppointmentsController currentPastAppointmentsCont;
+
+    private ContactUsController currentContactUsController;
+
+    private AppointmentController currentAppointmentController;
+
+    private UserProfileController currentUserProfileController;
+
+    public void setCurrentUser(Patient user) {
+        this.currentUser = user;
     }
 
     private Scene contactUScene;
 
     public void setContactUsScene(Scene scene) {
-        contactUScene = scene;
+        this.contactUScene = scene;
     }
 
-    private Scene homepageScene;
+    public void setCurrentContactUsCont(ContactUsController controller) {
+        this.currentContactUsController = controller;
+    }
 
-    public void setHomepageScene(Scene scene) {
-        homepageScene = scene;
+    public void setCurrentPastAppointmentCont(PastAppointmentsController controller) {
+        this.currentPastAppointmentsCont = controller;
+    }
+
+    public void setCurrentAppointmentController(AppointmentController controller) {
+        this.currentAppointmentController = controller;
     }
 
     private Scene pastAppointmentScene;
 
     public void setPastAppointsScene(Scene scene) {
-        pastAppointmentScene = scene;
+        this.pastAppointmentScene = scene;
     }
 
     private Scene appointmentScene;
 
     public void setAppointmentScene(Scene scene) {
-        appointmentScene = scene;
+        this.appointmentScene = scene;
+    }
+
+    private Scene userProfileScene;
+
+    public void setUserProfileScene(Scene scene) {
+        this.userProfileScene = scene;
+    }
+
+    public void setCurrentuserProfileController(UserProfileController controller) {
+        this.currentUserProfileController = controller;
     }
 
     public void openNewScene(ActionEvent actionEvent, Scene scene, String title, boolean resizable) {
@@ -126,8 +192,11 @@ public class HomePageController {
         MainFx.updateUI(primaryStage, title, resizable);
     }
 
-    void logOutScene(ActionEvent event) {
-        openNewScene(event, this.loginScene, "Login Is Required", false);
+    void logOutScene(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoaderLoginUI = new FXMLLoader(getClass().getResource("../../../fxml/Login.fxml"));
+        Parent luiRoot = fxmlLoaderLoginUI.load();
+        Scene luiScene = new Scene(luiRoot);
+        openNewScene(event, luiScene, "Login Is Required", false);
 
     }
 

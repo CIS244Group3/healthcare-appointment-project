@@ -1,25 +1,27 @@
 package com.group3project.Patient_Doctor;
 
+import java.time.LocalDate;
+
 public class Patient {
 	private String name;
-	private int age;
 	private String address;
 	private Insurance insurance;
 	private String username;
 	private String email;
+	private int id;
+	private LocalDate dob;
+	private String phoneNumber;
+	private String gender;
 
-	public Patient(String name, int age, String address, Insurance insurance) {
-		this.name = name;
-		this.age = age;
-		this.address = address;
-		this.insurance = insurance;
-
-	}
-
-	public Patient(String name, String username, String email) {
+	public Patient(int id, String name, LocalDate dob, String username, String email, String phoneNumber,
+			String gender) {
 		this.name = name;
 		this.username = username;
 		this.email = email;
+		this.id = id;
+		this.dob = dob;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
 
 	}
 
@@ -36,16 +38,36 @@ public class Patient {
 		return this.email;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
 	public String address() {
 		return address;
 	}
 
+	public String getAddress() {
+		return this.address;
+	}
+
+	public String getPhoneNumber() {
+		return this.phoneNumber;
+	}
+
+	public String getGender() {
+		return this.gender;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public LocalDate getDob() {
+		return this.dob;
+	}
+
 	public boolean hasIsurance() {
 		return insurance != null;
+	}
+
+	public Insurance getInsurance() {
+		return this.insurance;
 	}
 
 	// Setters
@@ -54,11 +76,7 @@ public class Patient {
 		this.name = name;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public void address(String address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -66,13 +84,20 @@ public class Patient {
 		this.insurance = insurance;
 	}
 
-	public Insurance getInsurance() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getAddress() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import com.group3project.Appointment.*?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="506.0" spacing="20.0"
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" spacing="20.0"
   xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21"
   fx:controller="com.group3project.Appointment.PastAppointmentsController">
   <padding>

@@ -10,13 +10,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Registration.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+   prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="com.group3project.Registration.LoginController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0"
+         AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <AnchorPane prefHeight="75.0" prefWidth="600.0" BorderPane.alignment="TOP_LEFT">
                <children>
-                  <Label layoutX="231.0" layoutY="55.0" prefHeight="39.0" prefWidth="203.0" text="Welcome" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="55.0">
+                  <Label layoutX="231.0" layoutY="55.0" prefHeight="39.0" prefWidth="203.0"
+                     text="Welcome" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0"
+                     AnchorPane.topAnchor="55.0">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -37,13 +43,18 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txfusername" layoutX="239.0" layoutY="47.0" prefHeight="26.0" prefWidth="202.0" />
-                  <Button fx:id="btnLogin" layoutX="10.0" layoutY="212.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="26.0" prefWidth="580.0" text="Login" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                  <PasswordField fx:id="pwfpassword" layoutX="239.0" layoutY="106.0" prefHeight="26.0" prefWidth="202.0" />
+                  <TextField fx:id="txfusername" layoutX="239.0" layoutY="47.0" prefHeight="26.0"
+                     prefWidth="202.0" />
+                  <Button fx:id="btnLogin" layoutX="10.0" layoutY="212.0" mnemonicParsing="false"
+                     onAction="#onLogin" prefHeight="26.0" prefWidth="580.0" text="Login"
+                     AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <PasswordField fx:id="pwfpassword" layoutX="239.0" layoutY="106.0"
+                     prefHeight="26.0" prefWidth="202.0" />
                   <HBox alignment="CENTER" layoutX="206.0" layoutY="254.0">
                      <children>
                         <Label text="Don't have an account?" />
-                        <Hyperlink fx:id="register" onAction="#switchToRegistrationPage" text="Register" />
+                        <Hyperlink fx:id="register" onAction="#switchToRegistrationPage"
+                           text="Register" />
                      </children>
                   </HBox>
                </children>

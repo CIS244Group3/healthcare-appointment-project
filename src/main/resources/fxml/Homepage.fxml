@@ -44,7 +44,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.HomePageController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;"
+   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="com.group3project.Home.HomePageController">
    <top>
       <AnchorPane prefHeight="90.0" prefWidth="802.0" BorderPane.alignment="CENTER">
          <ImageView fx:id="appLogo" fitHeight="29.0" fitWidth="628.0" layoutX="14.0" layoutY="13.0">
@@ -54,30 +56,42 @@
             <children>
                <HBox alignment="CENTER" prefHeight="112.0" prefWidth="962.0">
                   <children>
-                     <Button fx:id="btnPastAppointment" mnemonicParsing="false" onAction="#onPastAppointmentButtonClick" style="-fx-background-color: FFFFFF;" text="Past&#10;Appointments">
+                     <Button fx:id="btnPastAppointment" mnemonicParsing="false"
+                        onAction="#onPastAppointmentButtonClick"
+                        style="-fx-background-color: FFFFFF;" text="Past&#10;Appointments">
                         <font>
                            <Font name="System Bold" size="11.0" />
                         </font>
                      </Button>
-                     <Button fx:id="btnHome" mnemonicParsing="false" onAction="#onHomeButtonClick" style="-fx-background-color: FFFFFF;" text="Home" textFill="#b9db9f">
+                     <Button fx:id="btnHome" mnemonicParsing="false" onAction="#onHomeButtonClick"
+                        style="-fx-background-color: FFFFFF;" text="Home" textFill="#b9db9f">
                         <font>
                            <Font name="System Bold" size="12.0" />
                         </font>
                      </Button>
-                     <Button fx:id="btnContactUs" mnemonicParsing="false" onAction="#onContactUsButtonClick" style="-fx-background-color: FFFFFF;" text="Contact Us">
+                     <Button fx:id="btnContactUs" mnemonicParsing="false"
+                        onAction="#onContactUsButtonClick" style="-fx-background-color: FFFFFF;"
+                        text="Contact Us">
                         <font>
                            <Font name="System Bold" size="11.0" />
                         </font>
                      </Button>
-                     <Button fx:id="btnProfile" mnemonicParsing="false" onAction="#onProfileButtonClick" style="-fx-background-color: FFFFFF;" text="Profile">
+                     <Button fx:id="btnProfile" mnemonicParsing="false"
+                        onAction="#onProfileButtonClick" style="-fx-background-color: FFFFFF;"
+                        text="Profile">
                         <font>
                            <Font name="System Bold" size="11.0" />
                         </font>
                      </Button>
-                     <Button fx:id="btnAppointment" mnemonicParsing="false" onAction="#onAppointmentButtonClick" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: B9DB9F;" text="Make an appointment " textFill="WHITE" />
+                     <Button fx:id="btnAppointment" mnemonicParsing="false"
+                        onAction="#onAppointmentButtonClick" prefHeight="39.0" prefWidth="138.0"
+                        style="-fx-background-color: B9DB9F;" text="Make an appointment "
+                        textFill="WHITE" />
                   </children>
                </HBox>
-               <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false" onAction="#onLogOutClick" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: FFFFFF;" text="Log Out" textFill="#b9db9f">
+               <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false"
+                  onAction="#onLogOutClick" prefHeight="25.0" prefWidth="110.0"
+                  style="-fx-background-color: FFFFFF;" text="Log Out" textFill="#b9db9f">
                   <font>
                      <Font name="System Bold" size="12.0" />
                   </font>
@@ -87,8 +101,11 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFFFFF;" BorderPane.alignment="CENTER">
-         <Text layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skip the Wait:&#10;Simplifly Your &#10;Clinic Visits&#10;with Digital&#10;Scheduling" wrappingWidth="106.33282470703125">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFFFFF;"
+         BorderPane.alignment="CENTER">
+         <Text layoutX="46.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            text="Skip the Wait:&#10;Simplifly Your &#10;Clinic Visits&#10;with Digital&#10;Scheduling"
+            wrappingWidth="106.33282470703125">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
@@ -97,11 +114,18 @@
    </left>
    <center>
       <AnchorPane prefHeight="183.0" prefWidth="392.0" BorderPane.alignment="CENTER">
-         <TextArea layoutX="-208.0" layoutY="-26.0" prefHeight="44.0" prefWidth="1025.0" style="-fx-background-color: FFFFFF;" />
-         <AnchorPane layoutX="533.0" prefHeight="225.0" prefWidth="225.0" style="-fx-background-color: B9DB9F;">
-            <AnchorPane layoutX="86.0" prefHeight="228.0" prefWidth="150.0" style="-fx-background-color: lightblue;">
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="-67.0" layoutY="14.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
-               <Text fill="#636571" layoutX="-59.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currently, a variety of  clinics acroisss specialiteis are leveraging [App Name] to &#10;offer our services, ranging from general practioners and dentist to specialist in&#10;dermatology, orthopedics, and more. These clinics have embraced our&#10;platorform to enhance their patient experience, ensuring that evey visit is as smooth and hassle-&#10;free as possible" textAlignment="CENTER" wrappingWidth="184.7386474609375">
+         <TextArea layoutX="-208.0" layoutY="-26.0" prefHeight="44.0" prefWidth="1025.0"
+            style="-fx-background-color: FFFFFF;" />
+         <AnchorPane layoutX="533.0" prefHeight="225.0" prefWidth="225.0"
+            style="-fx-background-color: B9DB9F;">
+            <AnchorPane layoutX="86.0" prefHeight="228.0" prefWidth="150.0"
+               style="-fx-background-color: lightblue;">
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="-67.0"
+                  layoutY="14.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
+               <Text fill="#636571" layoutX="-59.0" layoutY="58.0" strokeType="OUTSIDE"
+                  strokeWidth="0.0"
+                  text="currently, a variety of  clinics acroisss specialiteis are leveraging [App Name] to &#10;offer our services, ranging from general practioners and dentist to specialist in&#10;dermatology, orthopedics, and more. These clinics have embraced our&#10;platorform to enhance their patient experience, ensuring that evey visit is as smooth and hassle-&#10;free as possible"
+                  textAlignment="CENTER" wrappingWidth="184.7386474609375">
                   <font>
                      <Font size="10.0" />
                   </font>

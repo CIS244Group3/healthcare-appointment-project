@@ -36,6 +36,12 @@ public class UserProfileController {
 
     private Scene homepageScene;
 
+    private Patient currentUser;
+
+    public void setCurrentUser(Patient user) {
+        this.currentUser = user;
+    }
+
     public void setHomepageScene(Scene scene) {
         homepageScene = scene;
     }
