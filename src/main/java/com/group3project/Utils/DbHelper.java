@@ -2,6 +2,7 @@ package com.group3project.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -76,8 +77,9 @@ public class DbHelper {
 
 		ResultSet rs = null;
 		try {
-			Statement stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
+			// Statement stmt = conn.createStatement();
+			PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			rs = stmt.executeQuery();
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
