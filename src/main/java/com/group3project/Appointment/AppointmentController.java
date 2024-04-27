@@ -47,11 +47,11 @@ public class AppointmentController {
     @FXML
     private DatePicker datePicker;
 
-    private Patient currentUser;
     private Doctor currentDoctor;
     private ObservableList<LocalTime> availabilityList;
     private LocalTime currentTime;
     private LocalDate currentDate;
+    private Patient currentUser;
 
     public void setCurrentUser(Patient user) {
         this.currentUser = user;
@@ -60,7 +60,9 @@ public class AppointmentController {
     @FXML
     void handleComboBox(ActionEvent event) {
         setCurrentDoctor(comboBoxSelection.getValue());
-        if (this.currentDoctor != null && this.currentUser != null && this.currentDate != null) {
+
+        if (comboBoxSelection.getValue() != null && this.currentUser != null && this.currentDate != null) {
+
             updateOptions();
         }
 
@@ -68,16 +70,22 @@ public class AppointmentController {
 
     @FXML
     void handleBackHome(ActionEvent event) {
+        setCurrentDoctor(null);
+        setCurrentDate(null);
+        setCurrentTime(null);
+        datePicker.getEditor().clear();
+        comboBoxTimeSelection.getSelectionModel().clearSelection();
+        comboBoxSelection.getSelectionModel().clearSelection();
+
         openNewScene(event, this.homepageScene, "Welcome " + this.currentUser.getName() + "!", false);
 
     }
 
     @FXML
     void handleDatePicker(ActionEvent event) {
-        LocalDate currentDate = datePicker.getValue();
-        setCurrentDate(currentDate);
+        setCurrentDate(datePicker.getValue());
+        if (this.currentDoctor != null && this.currentUser != null && datePicker.getValue() != null) {
 
-        if (this.currentDoctor != null && this.currentUser != null && this.currentDate != null) {
             updateOptions();
         }
 
@@ -158,7 +166,6 @@ public class AppointmentController {
             while (rs.next()) {
                 LocalTime time = rs.getTime("appointmenttime").toLocalTime();
                 this.currentDoctor.makeTimeUnavailable(time);
-                System.out.println("SHOULD BE PRINTED 5 TIMES");
             }
             for (Map.Entry<LocalTime, Boolean> entry : this.currentDoctor.getAvailability().entrySet()) {
                 LocalTime key = entry.getKey();
@@ -168,18 +175,13 @@ public class AppointmentController {
                 }
 
             }
-            comboBoxTimeSelection.setItems(this.availabilityList);
+            comboBoxTimeSelection.setItems(this.availabilityList.sorted());
 
             conn.close();
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
-        // datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
-        // if (newValue != null) {
 
-        // comboBoxTimeSelection.setItems(this.availabilityList);
-        // }
-        // });
     }
 
     public void openNewScene(ActionEvent actionEvent, Scene scene, String title, boolean resizable) {
@@ -227,6 +229,13 @@ public class AppointmentController {
 
                 setDisable(empty || date.compareTo(today) < 0 || date.isAfter(today.plusDays(180))
                         || date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY);
+            }
+        });
+        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (oldValue != null && newValue != null && !newValue.isEqual(oldValue) && this.currentDoctor != null) {
+                System.out.println("Here I am");
+
+                this.currentDoctor.setNewAvailability();
             }
         });
     }

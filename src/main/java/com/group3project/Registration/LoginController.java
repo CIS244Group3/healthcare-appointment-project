@@ -99,6 +99,7 @@ public class LoginController {
         HomePageController homepageCont = (HomePageController) fxmlLoaderHomepage.getController();
         this.homepageScene = new Scene(homepageRoot);
         homepageCont.setCurrentUser(patient);
+        homepageCont.setUpTableView();
 
         openNewScene(event, this.homepageScene, "Welcome " + this.patient.getName() + "!", false);
         clearField();

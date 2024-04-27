@@ -15,7 +15,7 @@ public class Doctor {
         this.name = name;
         this.specialty = specialty;
         this.availabilityForDay = new HashMap<LocalTime, Boolean>();
-        this.populateAvailability(this.availabilityForDay);
+        this.availabilityForDay = populateAvailability(this.availabilityForDay);
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Doctor {
         return this.availabilityForDay;
     }
 
-    private void populateAvailability(HashMap<LocalTime, Boolean> map) {
+    private HashMap<LocalTime, Boolean> populateAvailability(HashMap<LocalTime, Boolean> map) {
         map.put(LocalTime.of(9, 00), true);
         map.put(LocalTime.of(9, 15), true);
         map.put(LocalTime.of(9, 30), true);
@@ -63,6 +63,12 @@ public class Doctor {
         map.put(LocalTime.of(15, 30), true);
         map.put(LocalTime.of(15, 45), true);
 
+        return map;
+
+    }
+
+    public void setNewAvailability() {
+        this.availabilityForDay = populateAvailability(new HashMap<LocalTime, Boolean>());
     }
 
     public void makeTimeUnavailable(LocalTime time) {
@@ -71,10 +77,6 @@ public class Doctor {
 
         for (Map.Entry<LocalTime, Boolean> entry : this.availabilityForDay.entrySet()) {
             LocalTime key = entry.getKey();
-            // if (key == time) {
-            // reachedCurrentTime = true;
-            // continue;
-            // }
 
             if (key.minusMinutes(15).compareTo(time) == 0 || key.minusMinutes(30).compareTo(time) == 0
                     || key.minusMinutes(45).compareTo(time) == 0 || key.plusMinutes(15).compareTo(time) == 0
