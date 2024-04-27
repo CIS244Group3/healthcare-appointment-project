@@ -183,6 +183,7 @@ public class RegistrationController implements Initializable {
 
         try {
 
+
             if (usernameOrEmailExists()) {
                 showMessage("Username or Email Already Exists");
                 clearField();
@@ -226,8 +227,10 @@ public class RegistrationController implements Initializable {
 
             ResultSet rs = pStmt.executeQuery();
 
+
             if (rs.next()) {
                 conn.close();
+
                 return true;
             } else {
                 System.out.println("No record found");
@@ -282,6 +285,7 @@ public class RegistrationController implements Initializable {
                 conn.close();
             }
 
+
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
@@ -292,12 +296,14 @@ public class RegistrationController implements Initializable {
         System.out.println(str);
     }
 
+
     private void showMessage(String message) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning Dialog");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+
     }
 
     @Override
