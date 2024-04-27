@@ -7,14 +7,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Registration.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="801.0" style="-fx-background-color: #9AD2CB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Registration.RegistrationController">
    <children>
-      <HBox alignment="CENTER" layoutX="50.0" layoutY="120.0" prefHeight="49.0" prefWidth="488.0" spacing="10.0">
+      <ImageView fitHeight="644.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screen_Shot_2024-04-24_at_8.25.46_PM.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutX="160.0" layoutY="124.0" prefHeight="49.0" prefWidth="488.0" spacing="10.0">
          <children>
             <VBox>
                <children>
@@ -36,9 +43,9 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="50.0" layoutY="188.0" prefHeight="43.0" prefWidth="474.0" spacing="15.0">
+      <HBox layoutX="161.0" layoutY="186.0" prefHeight="43.0" prefWidth="474.0" spacing="15.0">
          <children>
-            <VBox>
+            <VBox prefHeight="43.0" prefWidth="201.0">
                <children>
                   <Label text="Email" />
                   <TextField fx:id="tfEmail" prefHeight="26.0" prefWidth="203.0" promptText="Email" />
@@ -46,13 +53,13 @@
             </VBox>
             <VBox>
                <children>
-                  <Label text="Phone Number" />
-                  <TextField fx:id="tfPhoneNumber" prefHeight="26.0" prefWidth="173.0" promptText="Phone Number" />
+                  <Label text="Phone Number (XXX-XXX-XXXX)" />
+                  <TextField fx:id="tfPhoneNumber" prefHeight="26.0" prefWidth="175.0" promptText="Phone Number" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="50.0" layoutY="257.0" spacing="25.0">
+      <HBox layoutX="159.0" layoutY="246.0" spacing="25.0">
          <children>
             <VBox>
                <children>
@@ -68,7 +75,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="50.0" layoutY="329.0" prefHeight="49.0" prefWidth="474.0" spacing="15.0">
+      <HBox layoutX="159.0" layoutY="309.0" prefHeight="49.0" prefWidth="474.0" spacing="15.0">
          <children>
             <VBox>
                <children>
@@ -84,26 +91,23 @@
             </VBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="183.0" layoutY="411.0" spacing="10.0">
+      <VBox alignment="CENTER" layoutX="183.0" layoutY="411.0" spacing="10.0" />
+      <VBox layoutX="211.0" layoutY="16.0">
          <children>
-            <Button fx:id="btnCreateAccount" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createUser" prefHeight="26.0" prefWidth="106.0" text="Create Account" />
-            <HBox alignment="CENTER">
-               <children>
-                  <Label text="Already have an account?" />
-                  <Hyperlink fx:id="login" onAction="#switchToLoginPage" text="Login" />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox layoutX="26.0" layoutY="14.0">
-         <children>
-            <Label prefHeight="44.0" prefWidth="130.0" text="Sign up:">
+            <Label prefHeight="53.0" prefWidth="335.0" text="Sign up:">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label text="Let's get you all set up so you can access your personal account" />
+            <Label text="Let's get you all set up so you can access your personal account" textAlignment="CENTER" />
          </children>
       </VBox>
+      <Button fx:id="btnCreateAccount" contentDisplay="CENTER" layoutX="320.0" layoutY="371.0" mnemonicParsing="false" onAction="#createUser" prefHeight="26.0" prefWidth="106.0" text="Create Account" />
+      <HBox alignment="CENTER" layoutX="288.0" layoutY="397.0">
+         <children>
+            <Label text="Already have an account?" />
+            <Hyperlink fx:id="login" onAction="#switchToLoginPage" text="Login" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
