@@ -8,6 +8,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -106,7 +107,7 @@ public class LoginController {
 
     }
 
-    private boolean isValidLogin() {
+    private boolean isValidLogin(ActionEvent event) {
         if (this.txfusername.getText().equals("") || this.pwfpassword.getText().equals("")) {
             return false;
         } else {
@@ -115,7 +116,7 @@ public class LoginController {
             String hashedPassword = ProjUtil.getSHA(password);
 
             try {
-                String sql = "SELECT * FROM patients WHERE password = ? AND username = ? ";
+                String sql = "SELECT * FROM patients WHERE password = ? AND username = ? AND verified = ?";
 
                 DbHelper dal = new DbHelper();
 
@@ -126,6 +127,7 @@ public class LoginController {
                 // // Set Parameters
                 pStmt.setString(1, hashedPassword);
                 pStmt.setString(2, username);
+                pStmt.setBoolean(3, true);
 
                 ResultSet rs = pStmt.executeQuery();
 
@@ -134,12 +136,28 @@ public class LoginController {
                     String nameString = rs.getString("firstname") + " " + rs.getString("lastname");
                     String emailString = rs.getString("email");
                     int id = rs.getInt("id");
+                    Boolean verified = rs.getBoolean("verified");
                     LocalDate dob = rs.getDate("dob").toLocalDate();
                     String phoneNumber = rs.getString("phonenumber");
                     String gender = rs.getString("gender");
-                    this.patient = new Patient(id, nameString, dob, usernameString, emailString, phoneNumber, gender);
+
+                    if (verified) {
+                        this.patient = new Patient(id, nameString, dob, usernameString, emailString, phoneNumber,
+                                gender);
+
+                    } else {
+                        showMessage("Please verify your email to activate your account");
+                        FXMLLoader fxmlLoaderOneTimeCode = new FXMLLoader(
+                                getClass().getResource("../../../fxml/OneTimeCode.fxml"));
+                        Parent oneTimeCodeRoot = fxmlLoaderOneTimeCode.load();
+                        Scene oneTimeCodeScene = new Scene(oneTimeCodeRoot);
+                        showUI(oneTimeCodeScene, StageStyle.DECORATED, "Enter One Time Code", false);
+                        return false;
+                    }
                 } else {
                     conn.close();
+                    showMessage("Invalid Credentials");
+
                     return false;
                 }
 
@@ -153,13 +171,24 @@ public class LoginController {
 
     @FXML
     void onLogin(ActionEvent event) throws Exception {
-        if (isValidLogin()) {
+        if (isValidLogin(event)) {
             switchToHomePage(event, this.patient);
         } else {
-            showMessage("Invalid Credentials");
             clearField();
 
         }
+    }
+
+    public void showUI(Scene scene, StageStyle stageStyle, String title, boolean resizable) {
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(title);
+
+        stage.initStyle(stageStyle);
+
+        stage.setResizable(resizable);
+
+        stage.show();
     }
 
     private void showMessage(String message) {

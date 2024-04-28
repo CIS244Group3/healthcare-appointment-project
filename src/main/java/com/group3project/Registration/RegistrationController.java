@@ -28,9 +28,16 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import org.apache.commons.validator.routines.EmailValidator;
 
-import com.group3project.Home.HomePageController;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.mail.*;
+import javax.mail.internet.*;
+
 import com.group3project.Patient_Doctor.Patient;
 import com.group3project.Utils.*;
 
@@ -72,6 +79,7 @@ public class RegistrationController implements Initializable {
     private Button btnCreateAccount;
 
     private Patient patient;
+    private long verificationCode;
 
     @FXML
     void confirmPassword(ActionEvent event) {
@@ -102,10 +110,10 @@ public class RegistrationController implements Initializable {
         this.loginScene = scene;
     }
 
-    private Scene homepageScene;
+    private Scene oneTimeCodeScene;
 
-    public void setHomepageScene(Scene scene) {
-        this.homepageScene = scene;
+    public void setOneTimeCodeScene(Scene scene) {
+        this.oneTimeCodeScene = scene;
     }
 
     public void openLoginScene(ActionEvent actionEvent) {
@@ -116,15 +124,16 @@ public class RegistrationController implements Initializable {
 
     }
 
-    void switchToHomePage(ActionEvent event, Patient patient) throws Exception {
+    void oneTimeCodePopup(ActionEvent event, Patient patient) throws Exception {
 
-        FXMLLoader fxmlLoaderHomepage = new FXMLLoader(getClass().getResource("../../../fxml/Homepage.fxml"));
-        Parent homepageRoot = fxmlLoaderHomepage.load();
-        HomePageController homepageCont = (HomePageController) fxmlLoaderHomepage.getController();
-        this.homepageScene = new Scene(homepageRoot);
-        homepageCont.setCurrentUser(patient);
-        openNewScene(event, this.homepageScene, "Welcome " + this.patient.getName() + "!", false);
-        clearField();
+        FXMLLoader fxmlLoaderOneTimeCode = new FXMLLoader(getClass().getResource("../../../fxml/OneTimeCode.fxml"));
+        Parent oneTimeCodeRoot = fxmlLoaderOneTimeCode.load();
+        OneTimeCodeController oneTimeCodeCont = (OneTimeCodeController) fxmlLoaderOneTimeCode.getController();
+        this.oneTimeCodeScene = new Scene(oneTimeCodeRoot);
+        oneTimeCodeCont.setOneTimeCode(this.verificationCode);
+        oneTimeCodeCont.setUsername(patient.getUsername());
+        openLoginScene(event);
+        this.showUI(this.oneTimeCodeScene, StageStyle.DECORATED, "Enter One Time Code", false);
 
     }
 
@@ -183,7 +192,6 @@ public class RegistrationController implements Initializable {
 
         try {
 
-
             if (usernameOrEmailExists()) {
                 showMessage("Username or Email Already Exists");
                 clearField();
@@ -202,7 +210,7 @@ public class RegistrationController implements Initializable {
         } catch (SQLException e) {
             print("SQL ERR: " + e.getMessage());
         }
-        switchToHomePage(event, this.patient);
+        oneTimeCodePopup(event, this.patient);
 
     }
 
@@ -227,7 +235,6 @@ public class RegistrationController implements Initializable {
 
             ResultSet rs = pStmt.executeQuery();
 
-
             if (rs.next()) {
                 conn.close();
 
@@ -247,9 +254,12 @@ public class RegistrationController implements Initializable {
     private Patient createUser(String firstName, String lastName, LocalDate dob, String username, String password,
             String email, String phoneNumber, String gender) throws SQLException {
         String hashedPassword = ProjUtil.getSHA(password);
+        Random rnd = new Random();
+        long n = 100000 + rnd.nextInt(900000);
+        this.verificationCode = n;
 
         try {
-            String sql = "INSERT INTO patients (firstname, lastname, dob, username, password, email, phonenumber, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO patients (firstname, lastname, dob, username, password, email, phonenumber, gender, onetimecode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             DbHelper dal = new DbHelper();
 
@@ -265,6 +275,7 @@ public class RegistrationController implements Initializable {
             pStmt.setString(6, email);
             pStmt.setString(7, phoneNumber);
             pStmt.setString(8, gender);
+            pStmt.setLong(9, this.verificationCode);
 
             int inserted = pStmt.executeUpdate();
 
@@ -275,7 +286,9 @@ public class RegistrationController implements Initializable {
 
                     Patient newUser = new Patient(id, firstName + " " + lastName, dob, username, email, phoneNumber,
                             gender);
-                    System.out.println(newUser.getId());
+                    System.out.print(newUser);
+                    sendVerificationEmail();
+                    showMessage("Account created, welcome! Please check your email to acticate your account.");
                     return newUser;
                 } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
@@ -284,7 +297,6 @@ public class RegistrationController implements Initializable {
                 System.out.println("No record found");
                 conn.close();
             }
-
 
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -296,7 +308,6 @@ public class RegistrationController implements Initializable {
         System.out.println(str);
     }
 
-
     private void showMessage(String message) {
         Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Warning Dialog");
@@ -304,6 +315,49 @@ public class RegistrationController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
 
+    }
+
+    private void sendVerificationEmail() throws Exception {
+        final String username = ProjUtil.getProperty("mail.name");
+        final String password = ProjUtil.getProperty("mail.key");
+
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        properties.put("mail.smtp.debug", "true");
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        // Create the email message
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(tfEmail.getText()));
+        message.setSubject("Welcome to Epoch Health Solutions! Here is your 8 digit one time code.");
+        message.setText("Your one time code is: " + Long.toString(this.verificationCode));
+
+        // Send the email
+        Transport.send(message);
+    }
+
+    public void showUI(Scene scene, StageStyle stageStyle, String title, boolean resizable) {
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(title);
+
+        stage.initStyle(stageStyle);
+
+        stage.setResizable(resizable);
+
+        stage.show();
     }
 
     @Override
