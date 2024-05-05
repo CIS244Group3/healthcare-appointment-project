@@ -9,8 +9,10 @@ public class Doctor {
     private String specialty;
     private int id;
     private HashMap<LocalTime, Boolean> availabilityForDay;
+    private String first;
+    private String last;
 
-    public Doctor(int id, String name, String specialty) {
+    public Doctor(int id, String name, String specialty, String first, String last) {
         this.id = id;
         this.name = name;
         this.specialty = specialty;
@@ -20,6 +22,14 @@ public class Doctor {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getFirst() {
+        return this.first;
+    }
+
+    public String getLast() {
+        return this.last;
     }
 
     @Override

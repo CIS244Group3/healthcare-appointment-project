@@ -75,7 +75,7 @@ public class PastAppointmentsController {
     private ObservableList<PastAppointment> getAppointments() {
         ObservableList<PastAppointment> listPastAppointments = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT appointment.appointmentdate, appointment.appointmenttime, doctor.firstname, doctor.lastname, doctor.specialty FROM appointment JOIN doctor ON appointment.doctorid=doctor.id WHERE patientid=?";
+            String sql = "SELECT appointment.id, appointment.appointmentdate, appointment.appointmenttime, doctor.firstname, doctor.lastname, doctor.specialty FROM appointment JOIN doctor ON appointment.doctorid=doctor.id WHERE patientid=?";
 
             DbHelper dal = new DbHelper();
 
@@ -87,13 +87,14 @@ public class PastAppointmentsController {
             ResultSet rs = pStmt.executeQuery();
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 LocalDate date = rs.getDate("appointmentdate").toLocalDate();
                 LocalTime time = rs.getTime("appointmenttime").toLocalTime();
                 String firstName = rs.getString("firstname");
                 String lastName = rs.getString("lastname");
                 String specialty = rs.getString("specialty");
                 if (date.isBefore(LocalDate.now())) {
-                    listPastAppointments.add(new PastAppointment(date, time, firstName, lastName, specialty));
+                    listPastAppointments.add(new PastAppointment(id, date, time, firstName, lastName, specialty));
                 }
             }
 

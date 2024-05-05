@@ -124,7 +124,7 @@ public class RegistrationController implements Initializable {
 
     }
 
-    void oneTimeCodePopup(ActionEvent event, Patient patient) throws Exception {
+    public void oneTimeCodePopup(ActionEvent event, Patient patient) throws Exception {
 
         FXMLLoader fxmlLoaderOneTimeCode = new FXMLLoader(getClass().getResource("../../../fxml/OneTimeCode.fxml"));
         Parent oneTimeCodeRoot = fxmlLoaderOneTimeCode.load();
@@ -288,7 +288,7 @@ public class RegistrationController implements Initializable {
                             gender);
                     System.out.print(newUser);
                     sendVerificationEmail();
-                    showMessage("Account created, welcome! Please check your email to acticate your account.");
+                    showMessage("Account created, welcome! Please check your email to activate your account.");
                     return newUser;
                 } else {
                     throw new SQLException("Creating user failed, no ID obtained.");
@@ -341,7 +341,7 @@ public class RegistrationController implements Initializable {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(username));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(tfEmail.getText()));
-        message.setSubject("Welcome to Epoch Health Solutions! Here is your 8 digit one time code.");
+        message.setSubject("Welcome to Epoch Health Solutions! Here is your 6 digit one time code.");
         message.setText("Your one time code is: " + Long.toString(this.verificationCode));
 
         // Send the email

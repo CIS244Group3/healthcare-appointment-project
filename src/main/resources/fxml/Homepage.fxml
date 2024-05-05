@@ -43,13 +43,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.HomePageController">
-   <ImageView fitHeight="556.0" fitWidth="844.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1482.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.HomePageController">
+   <ImageView fitHeight="990.0" fitWidth="1482.0" layoutX="-3.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Screen_Shot_2024-04-24_at_8.34.52_PM.png" />
       </image>
    </ImageView>
-   <HBox alignment="CENTER" layoutX="9.0" layoutY="13.0" prefHeight="100.0" prefWidth="667.0">
+   <HBox alignment="CENTER" layoutX="9.0" layoutY="13.0" prefHeight="100.0" prefWidth="1466.0">
       <children>
          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="547.0" spacing="10.0">
             <children>
@@ -82,20 +82,19 @@
          </Button>
       </children>
    </HBox>
-   <AnchorPane layoutX="11.0" layoutY="157.0" prefHeight="200.0" prefWidth="200.0">
+   <AnchorPane layoutX="1230.0" layoutY="147.0">
       <children>
-         <AnchorPane layoutX="-35.0" layoutY="-33.0" prefHeight="100.0" prefWidth="158.0" />
+         <AnchorPane layoutX="17.0" layoutY="17.0" prefHeight="167.0" prefWidth="166.0" style="-fx-background-color: lightblue;" />
+         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true" />
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutY="41.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
+         <Text fill="#636571" layoutX="17.0" layoutY="92.208984375" strokeType="OUTSIDE" strokeWidth="0.0" text="currently, a variety of  clinics acroisss specialiteis are leveraging [App Name] to &#10;offer our services, ranging from general practioners and dentist to specialist in&#10;dermatology, orthopedics, and more. These clinics have embraced our&#10;platorform to enhance their patient experience, ensuring that evey visit is as smooth and hassle-&#10;free as possible" textAlignment="CENTER" wrappingWidth="184.7386474609375">
+            <font>
+               <Font size="10.0" />
+            </font>
+         </Text>
       </children>
    </AnchorPane>
-   <AnchorPane layoutX="630.0" layoutY="136.0" prefHeight="167.0" prefWidth="166.0" style="-fx-background-color: lightblue;" />
-   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="619.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="613.0" layoutY="160.0" stroke="WHITE" strokeType="INSIDE" width="200.0" />
-   <Text fill="#636571" layoutX="630.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currently, a variety of  clinics acroisss specialiteis are leveraging [App Name] to &#10;offer our services, ranging from general practioners and dentist to specialist in&#10;dermatology, orthopedics, and more. These clinics have embraced our&#10;platorform to enhance their patient experience, ensuring that evey visit is as smooth and hassle-&#10;free as possible" textAlignment="CENTER" wrappingWidth="184.7386474609375">
-      <font>
-         <Font size="10.0" />
-      </font>
-   </Text>
-   <TableView fx:id="tableView" layoutX="11.0" layoutY="147.0" prefHeight="269.0" prefWidth="587.0">
+   <TableView fx:id="tableView" layoutX="357.0" layoutY="292.0" onMouseClicked="#handleRowClick" prefHeight="407.0" prefWidth="771.0">
       <columns>
          <TableColumn fx:id="dateColumn" prefWidth="99.0" text="Date" />
          <TableColumn fx:id="timeColumn" minWidth="0.0" prefWidth="116.0" text="Time" />
@@ -103,4 +102,14 @@
          <TableColumn fx:id="specialtyColumn" prefWidth="182.0" text="Specialty" />
       </columns>
    </TableView>
+   <AnchorPane layoutX="469.0" layoutY="721.0" prefHeight="100.0" prefWidth="533.0">
+      <children>
+         <HBox id="editSection" fx:id="editSection" alignment="CENTER" prefHeight="108.0" prefWidth="547.0" spacing="50.0">
+            <children>
+               <Button fx:id="cancelAppointment" mnemonicParsing="false" onAction="#handleCancel" prefHeight="30.0" prefWidth="118.0" text="Cancel" />
+               <Button fx:id="changeAppointment" mnemonicParsing="false" onAction="#handleChange" prefHeight="30.0" prefWidth="118.0" text="Change" />
+            </children>
+         </HBox>
+      </children>
+   </AnchorPane>
 </AnchorPane>
