@@ -45,14 +45,15 @@ import com.group3project.Patient_Doctor.Patient;
 import com.group3project.Patient_Doctor.UserProfileController;
 import com.group3project.Utils.DbHelper;
 import com.group3project.Utils.MainFx;
+import com.group3project.Utils.ProjUtil;
 
 public class HomePageController {
 
     public ImageView appLogo;
     private static final HttpClient client = HttpClient.newHttpClient();
-    private static final String API_KEY = "sk-proj-S9KY5SbkHCG15CXH34BRT3BlbkFJwplu8FdbpMWx958aEHHM";
-    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String MODEL = "gpt-3.5-turbo";
+    private static final String API_KEY = ProjUtil.getProperty("ai.key");
+    private static final String API_URL = ProjUtil.getProperty("ai.url");
+    private static final String MODEL = ProjUtil.getProperty("ai.model");
 
     public void onContactUsButtonClick(ActionEvent event) throws IOException {
         if (this.contactUScene == null) {
