@@ -1,5 +1,6 @@
 package com.group3project.Home;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -15,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,12 +25,17 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.concurrent.CompletableFuture;
+
+import org.json.JSONObject;
 
 import com.group3project.Appointment.AppointmentController;
 import com.group3project.Appointment.ChangeAppointmentController;
@@ -41,6 +49,10 @@ import com.group3project.Utils.MainFx;
 public class HomePageController {
 
     public ImageView appLogo;
+    private static final HttpClient client = HttpClient.newHttpClient();
+    private static final String API_KEY = "sk-proj-S9KY5SbkHCG15CXH34BRT3BlbkFJwplu8FdbpMWx958aEHHM";
+    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
+    private static final String MODEL = "gpt-3.5-turbo";
 
     public void onContactUsButtonClick(ActionEvent event) throws IOException {
         if (this.contactUScene == null) {
@@ -146,6 +158,15 @@ public class HomePageController {
 
     @FXML
     private Button changeAppointment;
+
+    @FXML
+    private TextField userInput;
+
+    @FXML
+    private TextArea chatArea;
+
+    @FXML
+    private Button sendButton;
 
     @FXML
     private Label testing;
@@ -254,6 +275,54 @@ public class HomePageController {
 
     public TableView<PastAppointment> getTableView() {
         return this.tableView;
+    }
+
+    // ChatGPT Integration
+
+    @FXML
+    void onSendButtonClick(ActionEvent event) {
+        String inputText = userInput.getText();
+        if (inputText != null && !inputText.trim().isEmpty()) {
+            CompletableFuture.supplyAsync(() -> getResponse(inputText))
+                    .thenAccept(response -> Platform
+                            .runLater(() -> chatArea.appendText("You: " + inputText + "\nBot: " + response + "\n")))
+                    .exceptionally(ex -> {
+                        Platform.runLater(() -> chatArea.appendText("Error: " + ex.getMessage() + "\n"));
+                        return null;
+                    });
+            userInput.clear();
+        }
+    }
+
+    private String getResponse(String inputText) {
+        String jsonBody = "{"
+                + "\"model\": \"" + MODEL + "\","
+                + "\"messages\": [{\"role\": \"user\", \"content\": \"" + inputText + "\"}],"
+                + "\"max_tokens\": 150,"
+                + "\"temperature\": 0.5"
+                + "}";
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(java.net.URI.create(API_URL))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + API_KEY)
+                .header("OpenAI-Beta", "assistants=v2") // Include the beta header as specified
+                .POST(java.net.http.HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        try {
+            java.net.http.HttpResponse<String> response = client.send(request,
+                    java.net.http.HttpResponse.BodyHandlers.ofString());
+            JSONObject jsonResponse = new JSONObject(response.body());
+            String chatResponse = jsonResponse.getJSONArray("choices")
+                    .getJSONObject(0)
+                    .getJSONObject("message")
+                    .getString("content");
+            return chatResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error processing your request.";
+        }
     }
 
     private ObservableList<PastAppointment> getAppointments() {

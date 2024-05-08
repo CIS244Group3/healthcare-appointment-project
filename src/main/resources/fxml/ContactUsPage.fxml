@@ -9,17 +9,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.ContactUsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1482.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.ContactUsController">
    <children>
-      <ImageView fitHeight="556.0" fitWidth="844.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="990.0" fitWidth="1482.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/Screen_Shot_2024-04-24_at_8.34.52_PM.png" />
          </image>
       </ImageView>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="844.0">
+      <BorderPane layoutX="442.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="844.0">
          <top>
-            <Pane prefHeight="76.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="90.0" prefWidth="844.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="btnHomePage" layoutX="254.0" layoutY="23.0" mnemonicParsing="false" onAction="#OnHomePageButtonClick" text="Home Page">
                      <font>
