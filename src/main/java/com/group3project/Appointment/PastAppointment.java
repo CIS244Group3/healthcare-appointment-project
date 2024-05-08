@@ -8,12 +8,15 @@ public class PastAppointment {
     private LocalDate date;
     private LocalTime time;
     private String specialty;
+    private int id;
 
-    public PastAppointment(LocalDate date, LocalTime time, String firstname, String lastname, String specialty) {
-        this.doctor = firstname + " " + lastname;
+    public PastAppointment(int id, LocalDate date, LocalTime time, String firstname, String lastname,
+            String specialty) {
+        this.doctor = "Dr. " + firstname + " " + lastname;
         this.date = date;
         this.time = time;
         this.specialty = specialty;
+        this.id = id;
     }
 
     public String getDoctor() {
@@ -30,6 +33,10 @@ public class PastAppointment {
 
     public LocalTime getTime() {
         return this.time;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
 }

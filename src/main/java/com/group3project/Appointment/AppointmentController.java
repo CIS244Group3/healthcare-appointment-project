@@ -17,12 +17,15 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Map;
 
+import com.group3project.Home.HomePageController;
 import com.group3project.Patient_Doctor.Doctor;
 import com.group3project.Patient_Doctor.Patient;
 import com.group3project.Utils.DbHelper;
@@ -106,7 +109,7 @@ public class AppointmentController {
 
             Connection conn = dal.getConnection();
 
-            PreparedStatement pStmt = conn.prepareStatement(sql);
+            PreparedStatement pStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pStmt.setInt(1, this.currentUser.getId());
             pStmt.setInt(2, this.currentDoctor.getId());
@@ -116,7 +119,18 @@ public class AppointmentController {
             int inserted = pStmt.executeUpdate();
 
             if (inserted == 1) {
-                System.out.println("Record Inserted");
+                ResultSet generatedKeys = pStmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int id = generatedKeys.getInt(1);
+
+                    PastAppointment newAppointment = new PastAppointment(id, currentDate, currentTime,
+                            this.currentDoctor.getFirst(), this.currentDoctor.getLast(),
+                            this.currentDoctor.getSpecialty());
+                    this.homePageController.getTableView().getItems().add(newAppointment);
+
+                } else {
+                    throw new SQLException("Creating appointment failed, no ID obtained.");
+                }
 
             } else {
                 System.out.println("No record found");
@@ -126,6 +140,7 @@ public class AppointmentController {
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+
         openNewScene(event, this.homepageScene, "Welcome " + this.currentUser.getName() + "!", false);
     }
 
@@ -133,6 +148,12 @@ public class AppointmentController {
 
     public void setHomepageScene(Scene scene) {
         homepageScene = scene;
+    }
+
+    private HomePageController homePageController;
+
+    public void setHomePageController(HomePageController homePageController) {
+        this.homePageController = homePageController;
     }
 
     public void setCurrentDoctor(Doctor doctor) {
@@ -208,8 +229,11 @@ public class AppointmentController {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = "Dr. " + rs.getString("firstname") + " " + rs.getString("lastname");
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+
                 String specialty = rs.getString("specialty");
-                doctors.add(new Doctor(id, name, specialty));
+                doctors.add(new Doctor(id, name, specialty, firstName, lastName));
             }
             comboBoxSelection.setItems(doctors);
 

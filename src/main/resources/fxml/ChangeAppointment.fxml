@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Appointment.ChangeAppointmentController">
+   <children>
+      <ImageView fitHeight="556.0" fitWidth="844.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Screen_Shot_2024-04-24_at_8.34.52_PM.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="anchorPane" layoutX="14.0" layoutY="38.0" prefHeight="325.0" prefWidth="576.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="38.0">
+         <children>
+            <ComboBox fx:id="comboBoxTimeSelection" layoutX="262.0" layoutY="282.0" onAction="#handleTimeSelection" prefWidth="300.0" promptText="See Available Times" />
+            <DatePicker fx:id="datePicker" layoutX="325.0" layoutY="206.0" onAction="#handleDatePicker" promptText="See Availability" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
