@@ -14,76 +14,90 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="801.0" style="-fx-background-color: #9AD2CB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Registration.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="830.0" style="-fx-background-color: #9AD2CB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Registration.RegistrationController">
    <children>
-      <ImageView fitHeight="644.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="475.0" fitWidth="830.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../images/Screen_Shot_2024-04-24_at_8.25.46_PM.png" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER" layoutX="160.0" layoutY="124.0" prefHeight="49.0" prefWidth="488.0" spacing="10.0">
+      <HBox alignment="CENTER" layoutX="160.0" layoutY="124.0" prefHeight="50.0" prefWidth="538.0" spacing="10.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="121.0">
          <children>
             <VBox>
                <children>
                   <Label text="First Name" />
-                  <TextField fx:id="tfFirstName" prefHeight="26.0" prefWidth="208.0" promptText="First Name" />
+                  <TextField fx:id="tfFirstName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="205.0" promptText="First Name" />
                </children>
             </VBox>
             <VBox>
                <children>
                   <Label text="Last Name" />
-                  <TextField fx:id="tfLastName" prefHeight="26.0" prefWidth="189.0" promptText="Last Name" />
+                  <TextField fx:id="tfLastName" prefHeight="25.0" prefWidth="205.0" promptText="Last Name" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Gender" />
-                  <ChoiceBox id="cbGender" fx:id="cbGender" prefHeight="26.0" prefWidth="71.0" />
+                  <ChoiceBox id="cbGender" fx:id="cbGender" prefHeight="25.0" prefWidth="71.0" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="161.0" layoutY="186.0" prefHeight="43.0" prefWidth="474.0" spacing="15.0">
+      <HBox layoutX="161.0" layoutY="186.0" prefHeight="50.0" prefWidth="538.0" spacing="10.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="171.0">
          <children>
-            <VBox prefHeight="43.0" prefWidth="201.0">
+            <VBox prefHeight="50.0" prefWidth="211.0">
                <children>
                   <Label text="Email" />
-                  <TextField fx:id="tfEmail" prefHeight="26.0" prefWidth="203.0" promptText="Email" />
+                  <TextField fx:id="tfEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="205.0" promptText="Email" />
                </children>
             </VBox>
-            <VBox>
+            <VBox prefHeight="50.0" prefWidth="205.0">
                <children>
                   <Label text="Phone Number (XXX-XXX-XXXX)" />
-                  <TextField fx:id="tfPhoneNumber" prefHeight="26.0" prefWidth="175.0" promptText="Phone Number" />
+                  <TextField fx:id="tfPhoneNumber" prefHeight="25.0" prefWidth="205.0" promptText="Phone Number" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="159.0" layoutY="246.0" spacing="25.0">
+      <HBox layoutX="159.0" layoutY="246.0" prefHeight="50.0" prefWidth="514.0" spacing="10.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="171.0">
          <children>
-            <VBox>
+            <VBox prefHeight="50.0" prefWidth="213.0">
                <children>
                   <Label text="Date of Birth" />
-                  <DatePicker fx:id="tfDOB" prefHeight="26.0" prefWidth="175.0" promptText="Date of Birth" />
+                  <DatePicker fx:id="tfDOB" prefHeight="25.0" prefWidth="205.0" promptText="Date of Birth" />
                </children>
             </VBox>
-            <VBox>
+            <VBox prefHeight="50.0" prefWidth="211.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="59.0" text="Username" />
-                  <TextField fx:id="tfUsername" prefHeight="26.0" prefWidth="200.0" promptText="Username " />
+                  <TextField fx:id="tfUsername" prefHeight="25.0" prefWidth="205.0" promptText="Username " />
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="159.0" layoutY="309.0" prefHeight="49.0" prefWidth="474.0" spacing="15.0">
+      <HBox layoutX="159.0" layoutY="309.0" prefHeight="50.0" prefWidth="500.0" spacing="15.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="171.0">
          <children>
-            <VBox>
+            <VBox prefHeight="55.0" prefWidth="208.0">
                <children>
-                  <Label text="Password" />
-                  <PasswordField fx:id="pfPassword" prefHeight="26.0" prefWidth="191.0" promptText="Password" />
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Password: " />
+                        <Label text="(At least 8 characters, ">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label text="1 uppercase, 1 number, and 1 special character)">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="pfPassword" prefHeight="25.0" prefWidth="242.0" promptText="Password" />
                </children>
             </VBox>
-            <VBox>
+            <VBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="207.0">
                <children>
                   <Label text="Confirm Password" />
                   <PasswordField fx:id="pfConfirmPassword" onAction="#confirmPassword" prefHeight="26.0" prefWidth="195.0" promptText="Confirm Password" />

@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="990.0" prefWidth="1482.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Patient_Doctor.UserProfileController">
-   <ImageView fitHeight="990.0" fitWidth="1610.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-128.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="990.0" prefWidth="1480.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Patient_Doctor.UserProfileController">
+   <ImageView fitHeight="990.0" fitWidth="1480.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <image>
          <Image url="@../images/Screen_Shot_2024-04-24_at_8.34.52_PM.png" />
       </image>

@@ -47,9 +47,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="990.0" prefWidth="1488.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.HomePageController">
+<AnchorPane prefHeight="990.0" prefWidth="1480.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Home.HomePageController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1488.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1480.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <AnchorPane prefHeight="90.0" prefWidth="802.0" BorderPane.alignment="CENTER">
                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1017.0" spacing="280.0" style="-fx-background-color: #bad99e;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -94,28 +94,28 @@
          </top>
          <center>
             <AnchorPane prefHeight="516.0" prefWidth="1018.0" BorderPane.alignment="CENTER">
-               <ImageView fitHeight="909.0" fitWidth="1488.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <ImageView fitHeight="909.0" fitWidth="1480.0" layoutX="4.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
                   <image>
                      <Image url="@../images/BackgroundBlue.png" />
                   </image>
                </ImageView>
-               <AnchorPane layoutX="883.0" layoutY="118.0" prefHeight="364.0" prefWidth="486.0" AnchorPane.bottomAnchor="427.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="107.0">
+               <AnchorPane layoutX="883.0" layoutY="118.0" prefHeight="375.0" prefWidth="543.0" AnchorPane.bottomAnchor="427.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="107.0">
                   <children>
                      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                            <TextArea fx:id="chatArea" editable="false" prefHeight="321.0" prefWidth="492.0" promptText="Welcome how can I assist you?" style="-fx-background-color: #bad99e;" wrapText="true">
                               <font>
-                                 <Font name="System Bold Italic" size="27.0" />
+                                 <Font name="System Bold Italic" size="17.0" />
                               </font>
                            </TextArea>
                            <HBox alignment="BOTTOM_LEFT">
                               <children>
-                                 <TextField fx:id="userInput" prefHeight="54.0" prefWidth="415.0" promptText="Type your questions here" style="-fx-background-color: #bad99e;">
+                                 <TextField fx:id="userInput" prefHeight="54.0" prefWidth="441.0" promptText="Type your questions here" style="-fx-background-color: #bad99e;">
                                     <font>
                                        <Font name="System Bold" size="15.0" />
                                     </font>
                                  </TextField>
-                                 <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="53.0" prefWidth="77.0" style="-fx-background-color: gray;" text="Send" textFill="#b9db9f">
+                                 <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="53.0" prefWidth="105.0" style="-fx-background-color: gray;" text="Send" textFill="#b9db9f">
                                     <font>
                                        <Font name="System Bold" size="12.0" />
                                     </font>
