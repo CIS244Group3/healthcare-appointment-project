@@ -35,6 +35,8 @@ public class PastAppointmentsController {
 
     @FXML
     private TableColumn<PastAppointment, String> specialtyColumn;
+    @FXML
+    private TableColumn<PastAppointment, String> notesColumn;
 
     @FXML
     private TableView<PastAppointment> tableView;

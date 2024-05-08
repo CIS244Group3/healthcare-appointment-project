@@ -8,28 +8,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1482.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Appointment.AppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="990.0" prefWidth="1480.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group3project.Appointment.AppointmentController">
    <children>
-      <ImageView fitHeight="990.0" fitWidth="1482.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="990.0" fitWidth="1488.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/Screen_Shot_2024-04-24_at_8.34.52_PM.png" />
+            <Image url="@../images/BackgroundBlue.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="anchorPane" layoutX="10.0" layoutY="62.0" prefHeight="325.0" prefWidth="1446.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="62.0">
          <children>
-            <DatePicker fx:id="datePicker" layoutX="644.0" layoutY="146.0" onAction="#handleDatePicker" promptText="See Availability" />
-            <HBox id="optionHBox" alignment="CENTER" layoutX="10.0" layoutY="171.0" prefHeight="111.0" prefWidth="1426.0" AnchorPane.bottomAnchor="632.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="171.0">
+            <AnchorPane layoutX="14.0" layoutY="336.0" AnchorPane.bottomAnchor="335.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="336.0">
                <children>
-                  <ComboBox fx:id="comboBoxSelection" onAction="#handleComboBox" prefWidth="300.0" promptText="Choose Physician" />
+                  <DatePicker fx:id="datePicker" layoutX="634.0" onAction="#handleDatePicker" promptText="See Availability" />
+                  <HBox id="optionHBox" alignment="CENTER" layoutY="25.0" prefHeight="111.0" prefWidth="1426.0">
+                     <children>
+                        <ComboBox fx:id="comboBoxSelection" onAction="#handleComboBox" prefWidth="300.0" promptText="Choose Physician" />
+                     </children>
+                  </HBox>
+                  <ComboBox fx:id="comboBoxTimeSelection" layoutX="563.0" layoutY="136.0" onAction="#handleTimeSelection" prefWidth="300.0" promptText="See Available Times" />
+                  <HBox layoutX="506.0" layoutY="208.0">
+                     <children>
+                        <Button fx:id="btnBackHome" mnemonicParsing="false" onAction="#handleBackHome" prefHeight="35.0" prefWidth="198.0" text="Back to Home" textAlignment="CENTER" />
+                        <Button fx:id="btnBookAppointment" mnemonicParsing="false" onAction="#handleBookAppointment" prefHeight="35.0" prefWidth="198.0" text="Book Appointment" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <ComboBox fx:id="comboBoxTimeSelection" layoutX="573.0" layoutY="282.0" onAction="#handleTimeSelection" prefWidth="300.0" promptText="See Available Times" />
-            <HBox layoutX="516.0" layoutY="354.0">
-               <children>
-                  <Button fx:id="btnBackHome" mnemonicParsing="false" onAction="#handleBackHome" prefHeight="35.0" prefWidth="198.0" text="Back to Home" textAlignment="CENTER" />
-                  <Button fx:id="btnBookAppointment" mnemonicParsing="false" onAction="#handleBookAppointment" prefHeight="35.0" prefWidth="198.0" text="Book Appointment" textAlignment="CENTER" />
-               </children>
-            </HBox>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
