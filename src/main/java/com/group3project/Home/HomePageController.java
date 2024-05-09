@@ -206,6 +206,8 @@ public class HomePageController {
 
     private BooleanProperty allowEditSection = new SimpleBooleanProperty(false);
 
+    private BooleanProperty hideChange = new SimpleBooleanProperty(false);
+
     public void showEditSetion() {
         this.allowEditSection.set(true);
     }
@@ -296,6 +298,7 @@ public class HomePageController {
     }
 
     private String getResponse(String inputText) {
+        System.out.println(API_KEY);
         String jsonBody = "{"
                 + "\"model\": \"" + MODEL + "\","
                 + "\"messages\": [{\"role\": \"user\", \"content\": \"" + inputText + "\"}],"
@@ -315,6 +318,7 @@ public class HomePageController {
             java.net.http.HttpResponse<String> response = client.send(request,
                     java.net.http.HttpResponse.BodyHandlers.ofString());
             JSONObject jsonResponse = new JSONObject(response.body());
+            System.out.println(jsonResponse + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             String chatResponse = jsonResponse.getJSONArray("choices")
                     .getJSONObject(0)
                     .getJSONObject("message")
@@ -468,6 +472,8 @@ public class HomePageController {
     @FXML
     private void initialize() {
         editSection.visibleProperty().bind(allowEditSection);
+        changeAppointment.visibleProperty().bind(hideChange);
+
     }
 
 }

@@ -126,6 +126,7 @@ public class AppointmentController {
                     PastAppointment newAppointment = new PastAppointment(id, currentDate, currentTime,
                             this.currentDoctor.getFirst(), this.currentDoctor.getLast(),
                             this.currentDoctor.getSpecialty());
+
                     this.homePageController.getTableView().getItems().add(newAppointment);
 
                 } else {

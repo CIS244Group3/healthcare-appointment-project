@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class PastAppointment {
-    private String doctor;
+    private String firstName;
+    private String lastName;
     private LocalDate date;
     private LocalTime time;
     private String specialty;
@@ -12,7 +13,8 @@ public class PastAppointment {
 
     public PastAppointment(int id, LocalDate date, LocalTime time, String firstname, String lastname,
             String specialty) {
-        this.doctor = "Dr. " + firstname + " " + lastname;
+        this.firstName = firstname;
+        this.lastName = lastname;
         this.date = date;
         this.time = time;
         this.specialty = specialty;
@@ -20,7 +22,7 @@ public class PastAppointment {
     }
 
     public String getDoctor() {
-        return this.doctor;
+        return "Dr. " + this.firstName + " " + this.lastName;
     }
 
     public String getSpecialty() {
