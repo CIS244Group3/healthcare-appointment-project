@@ -16,6 +16,8 @@ public class Doctor {
         this.id = id;
         this.name = name;
         this.specialty = specialty;
+        this.first = first;
+        this.last = last;
         this.availabilityForDay = new HashMap<LocalTime, Boolean>();
         this.availabilityForDay = populateAvailability(this.availabilityForDay);
     }
