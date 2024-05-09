@@ -113,6 +113,7 @@ public class PastAppointmentsController {
         timeColumn.setCellValueFactory(new PropertyValueFactory<PastAppointment, LocalTime>("time"));
         doctorColumn.setCellValueFactory(new PropertyValueFactory<PastAppointment, String>("doctor"));
         specialtyColumn.setCellValueFactory(new PropertyValueFactory<PastAppointment, String>("specialty"));
+        notesColumn.setCellValueFactory(new PropertyValueFactory<PastAppointment, String>("notes"));
 
         tableView.setItems(getAppointments());
     }

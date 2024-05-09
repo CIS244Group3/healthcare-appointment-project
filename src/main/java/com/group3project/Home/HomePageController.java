@@ -51,7 +51,7 @@ public class HomePageController {
 
     public ImageView appLogo;
     private static final HttpClient client = HttpClient.newHttpClient();
-    private static final String API_KEY = ProjUtil.getProperty("ai.key");
+    private static final String API_KEY = ProjUtil.decrypt(ProjUtil.getProperty("ai.key"));
     private static final String API_URL = ProjUtil.getProperty("ai.url");
     private static final String MODEL = ProjUtil.getProperty("ai.model");
 
@@ -298,7 +298,6 @@ public class HomePageController {
     }
 
     private String getResponse(String inputText) {
-        System.out.println(API_KEY);
         String jsonBody = "{"
                 + "\"model\": \"" + MODEL + "\","
                 + "\"messages\": [{\"role\": \"user\", \"content\": \"" + inputText + "\"}],"
@@ -318,7 +317,6 @@ public class HomePageController {
             java.net.http.HttpResponse<String> response = client.send(request,
                     java.net.http.HttpResponse.BodyHandlers.ofString());
             JSONObject jsonResponse = new JSONObject(response.body());
-            System.out.println(jsonResponse + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             String chatResponse = jsonResponse.getJSONArray("choices")
                     .getJSONObject(0)
                     .getJSONObject("message")

@@ -67,8 +67,6 @@ public class ProjUtil {
 		if (prop == null) {
 
 			String path = getResourcePath(PROPERTY_PATH);
-			System.out.println(path);
-			System.out.println("Here I am");
 
 			try (InputStream input = new FileInputStream(path)) {
 
