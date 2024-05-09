@@ -9,6 +9,8 @@ public class PastAppointment {
     private LocalDate date;
     private LocalTime time;
     private String specialty;
+    private String notes;
+
     private int id;
 
     public PastAppointment(int id, LocalDate date, LocalTime time, String firstname, String lastname,
@@ -39,6 +41,10 @@ public class PastAppointment {
 
     public int getId() {
         return this.id;
+    }
+
+    public String getNotes() {
+        return this.notes;
     }
 
 }
