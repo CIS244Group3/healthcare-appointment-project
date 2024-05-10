@@ -18,77 +18,131 @@
       </image>
    </ImageView>
    <VBox fx:id="mainContainer" alignment="TOP_CENTER" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-      <Label alignment="CENTER" prefHeight="35.0" prefWidth="882.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-underline: true;" text="User Profile" textAlignment="CENTER">
+      <Label alignment="CENTER" prefHeight="148.0" prefWidth="882.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-underline: true;" text="User Profile" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="29.0" />
          </font>
       </Label>
       <AnchorPane prefHeight="463.0" prefWidth="1462.0">
          <children>
-            <HBox layoutX="341.0" layoutY="181.0" prefHeight="214.0" prefWidth="780.0">
+            <HBox layoutX="282.0" layoutY="181.0" prefHeight="537.0" prefWidth="1063.0" spacing="180.0">
                <children>
 
                   <VBox prefHeight="214.0" prefWidth="386.0" spacing="5">
                      <HBox spacing="15">
-                        <Label style="-fx-font-weight: bold;" text="Username:" />
-                        <Label fx:id="usernameLabel" />
+                        <Label style="-fx-font-weight: bold;" text="Username:">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
+                        <Label fx:id="usernameLabel">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
                      </HBox>
                      <HBox spacing="15">
-                        <Label style="-fx-font-weight: bold;" text="Email:" />
-                        <Label fx:id="emailLabel" />
+                        <Label style="-fx-font-weight: bold;" text="Email:">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
+                        <Label fx:id="emailLabel">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
                      </HBox>
                      <HBox spacing="15">
-                        <Label style="-fx-font-weight: bold;" text="Primary Care Physician:" />
-                        <Label fx:id="doctorNameLabel" />
+                        <Label style="-fx-font-weight: bold;" text="Primary Care Physician:">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
+                        <Label fx:id="doctorNameLabel">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
                      </HBox>
                      <HBox spacing="15">
-                        <Label style="-fx-font-weight: bold;" text="Hospital:" />
-                        <Label fx:id="clinicNameLabel" text="Nothing on File" />
+                        <Label style="-fx-font-weight: bold;" text="Hospital:">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
+                        <Label fx:id="clinicNameLabel" text="Nothing on File">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
                      </HBox>
                      <HBox spacing="15">
-                        <Label style="-fx-font-weight: bold;" text="Insurance:" />
-                        <Label fx:id="insuranceLabel" text="Nothing on File" />
+                        <Label style="-fx-font-weight: bold;" text="Insurance:">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
+                        <Label fx:id="insuranceLabel" text="Nothing on File">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
                      </HBox>
                      <HBox spacing="15">
-                        <Label style="-fx-font-weight: bold;" text="Pharmacy:" />
-                        <Label fx:id="pharmacyLabel" text="Nothing on File" />
+                        <Label style="-fx-font-weight: bold;" text="Pharmacy:">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
+                        <Label fx:id="pharmacyLabel" text="Nothing on File">
+                           <font>
+                              <Font size="29.0" />
+                           </font></Label>
                      </HBox>
                   </VBox>
                   <VBox id="editBox" fx:id="editBox" prefHeight="214.0" prefWidth="397.0" spacing="5">
                      <children>
                         <HBox spacing="15">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="95.0" style="-fx-font-weight: bold;" text="Username:" />
-                              <TextField fx:id="usernameInput" prefHeight="25.0" prefWidth="184.0" />
+                              <Label prefHeight="43.0" prefWidth="167.0" style="-fx-font-weight: bold;" text="Username:">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
+                              <TextField fx:id="usernameInput" prefHeight="25.0" prefWidth="216.0" />
                            </children>
                         </HBox>
                         <HBox spacing="15">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Email:" />
+                              <Label prefHeight="43.0" prefWidth="187.0" style="-fx-font-weight: bold;" text="Email:">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
                               <TextField fx:id="emailInput" prefHeight="25.0" prefWidth="246.0" />
                            </children>
                         </HBox>
                         <HBox spacing="15">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Primary Care Physician:" />
+                              <Label prefHeight="43.0" prefWidth="538.0" style="-fx-font-weight: bold;" text="Primary Care Physician:">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
                               <ComboBox fx:id="pcpInput" prefWidth="150.0" />
                            </children>
                         </HBox>
                         <HBox spacing="15">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Hospital:" />
-                              <TextField fx:id="hospitalInput" prefHeight="25.0" prefWidth="230.0" />
+                              <Label prefHeight="43.0" prefWidth="179.0" style="-fx-font-weight: bold;" text="Hospital:">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
+                              <TextField fx:id="hospitalInput" prefHeight="25.0" prefWidth="226.0" />
                            </children>
                         </HBox>
                         <HBox spacing="15">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Insurance:" />
+                              <Label prefHeight="43.0" prefWidth="169.0" style="-fx-font-weight: bold;" text="Insurance:">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
                               <TextField fx:id="insuranceInput" prefHeight="25.0" prefWidth="223.0" />
                            </children>
                         </HBox>
                         <HBox spacing="15">
                            <children>
-                              <Label style="-fx-font-weight: bold;" text="Pharmacy:" />
+                              <Label prefHeight="43.0" prefWidth="168.0" style="-fx-font-weight: bold;" text="Pharmacy:">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font></Label>
                               <TextField fx:id="pharmacyInput" prefHeight="25.0" prefWidth="224.0" />
                            </children>
                         </HBox>
@@ -105,13 +159,13 @@
          </children>
       </AnchorPane>
 
-      <HBox alignment="CENTER" prefHeight="25.0" prefWidth="780.0" spacing="10">
-         <AnchorPane prefHeight="25.0" prefWidth="287.0">
+      <HBox alignment="CENTER" prefHeight="96.0" prefWidth="1460.0" spacing="10">
+         <AnchorPane prefHeight="96.0" prefWidth="214.0">
             <children>
-               <HBox layoutX="-5.0" prefHeight="25.0" prefWidth="262.0" spacing="15.0">
+               <HBox alignment="CENTER" layoutX="14.0" layoutY="2.0" prefHeight="78.0" prefWidth="371.0" spacing="15.0">
                   <children>
-                     <Button fx:id="editButton" onAction="#handleEdit" prefHeight="25.0" prefWidth="104.0" style="-fx-font-weight: bold;" text="Edit" />
-                     <Button fx:id="homeButton" onAction="#handleBackHome" prefHeight="25.0" prefWidth="115.0" style="-fx-font-weight: bold;" text="Home" />
+                     <Button fx:id="editButton" onAction="#handleEdit" prefHeight="50.0" prefWidth="157.0" style="-fx-font-weight: bold;" text="Edit" />
+                     <Button fx:id="homeButton" onAction="#handleBackHome" prefHeight="50.0" prefWidth="157.0" style="-fx-font-weight: bold;" text="Home" />
                   </children>
                </HBox>
             </children>

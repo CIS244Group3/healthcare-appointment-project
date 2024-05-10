@@ -85,7 +85,6 @@ public class Doctor {
 
     public void makeTimeUnavailable(LocalTime time) {
         this.availabilityForDay.replace(time, false);
-        System.out.println("in here mayne");
 
         for (Map.Entry<LocalTime, Boolean> entry : this.availabilityForDay.entrySet()) {
             LocalTime key = entry.getKey();
@@ -94,7 +93,6 @@ public class Doctor {
                     || key.minusMinutes(45).compareTo(time) == 0 || key.plusMinutes(15).compareTo(time) == 0
                     || key.plusMinutes(30).compareTo(time) == 0 || key.plusMinutes(45).compareTo(time) == 0) {
                 this.availabilityForDay.replace(key, false);
-                System.out.println("something was made false!");
 
             }
 

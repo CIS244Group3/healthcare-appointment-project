@@ -35,6 +35,14 @@ public class PastAppointment {
         return this.date;
     }
 
+    public String getFirst() {
+        return this.firstName;
+    }
+
+    public String getLast() {
+        return this.lastName;
+    }
+
     public LocalTime getTime() {
         return this.time;
     }
@@ -45,6 +53,14 @@ public class PastAppointment {
 
     public String getNotes() {
         return this.notes;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
 }

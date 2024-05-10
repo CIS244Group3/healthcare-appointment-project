@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -206,10 +207,12 @@ public class HomePageController {
 
     private BooleanProperty allowEditSection = new SimpleBooleanProperty(false);
 
-    private BooleanProperty hideChange = new SimpleBooleanProperty(false);
-
     public void showEditSetion() {
         this.allowEditSection.set(true);
+    }
+
+    public void hideEditSetion() {
+        this.allowEditSection.set(false);
     }
 
     public void setCurrentUser(Patient user) {
@@ -274,6 +277,18 @@ public class HomePageController {
         Scene luiScene = new Scene(luiRoot);
         openNewScene(event, luiScene, "Login Is Required", false);
 
+    }
+
+    public void showUI(Scene scene, StageStyle stageStyle, String title, boolean resizable) {
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(title);
+
+        stage.initStyle(stageStyle);
+
+        stage.setResizable(resizable);
+
+        stage.show();
     }
 
     public TableView<PastAppointment> getTableView() {
@@ -373,34 +388,33 @@ public class HomePageController {
         }
     }
 
-    // DELETE FROM `patients` WHERE `patients`.`id` = 2
     @FXML
     void handleCancel(ActionEvent event) {
         cancelAppointment();
     }
 
     @FXML
-    void handleChange(ActionEvent event) {
+    void handleChange(ActionEvent event) throws Exception {
+        changeTimePopUp(event);
 
     }
 
-    // void changeTimePopUp(ActionEvent event, Patient patient) throws Exception {
+    void changeTimePopUp(ActionEvent event) throws Exception {
 
-    // FXMLLoader fxmlLoaderChangeAppointment = new FXMLLoader(
-    // getClass().getResource("../../../fxml/ChangeAppointment.fxml"));
-    // Parent changeAppointmentRoot = fxmlLoaderChangeAppointment.load();
-    // ChangeAppointmentController changeAppointmentCont =
-    // (ChangeAppointmentController) fxmlLoaderChangeAppointment
-    // .getController();
-    // this.changeAppointmentScene = new Scene(changeAppointmentRoot);
-    // changeAppointmentCont.setCurrentUser(this.currentUser);
-    // changeAppointmentCont.setCurrentDoctorId(this.selectedAppointment.getId());
+        FXMLLoader fxmlLoaderChangeAppointment = new FXMLLoader(
+                getClass().getResource("../../../fxml/ChangeAppointment.fxml"));
+        Parent changeAppointmentRoot = fxmlLoaderChangeAppointment.load();
+        ChangeAppointmentController changeAppointmentCont = (ChangeAppointmentController) fxmlLoaderChangeAppointment
+                .getController();
+        this.changeAppointmentScene = new Scene(changeAppointmentRoot);
+        changeAppointmentCont.setCurrentUser(this.currentUser);
+        changeAppointmentCont.setCurrentDoctorId(this.selectedAppointment.getId());
+        changeAppointmentCont.setSelectedAppointment(this.selectedAppointment);
+        changeAppointmentCont.setHomepageController(this);
 
-    // openLoginScene(event);
-    // this.showUI(this.oneTimeCodeScene, StageStyle.DECORATED, "Enter One Time
-    // Code", false);
+        this.showUI(this.changeAppointmentScene, StageStyle.DECORATED, "Change Appointment", false);
 
-    // }
+    }
 
     private void cancelAppointment() {
         String update = "DELETE FROM appointment WHERE id = ?";
@@ -423,34 +437,6 @@ public class HomePageController {
         }
     }
 
-    // private void updateAppointment() {
-    // String update = "UPDATE appointment SET appointmentdate = ?, appointmenttime
-    // = ? WHERE id=?";
-    // try (Connection conn = new DbHelper().getConnection();
-    // PreparedStatement pstmt = conn.prepareStatement(update)) {
-    // pstmt.setInt(1, this.selectedAppointment.getId());
-
-    // int affectedRows = pstmt.executeUpdate();
-    // if (affectedRows > 0) {
-    // showAlertDialog(Alert.AlertType.INFORMATION, "Update Successful",
-    // "Appointment change has been made");
-    // this.allowEditSection.set(false);
-    // tableView.getItems().remove(this.selectedAppointment);
-    // tableView.getItems()
-    // .add(new PastAppointment(this.selectedAppointment.getId(), null, null,
-    // update, update, update));
-
-    // this.selectedAppointment = null;
-    // } else {
-    // showAlertDialog(Alert.AlertType.ERROR, "Cancellation Failed", "Please try
-    // again");
-    // }
-    // } catch (SQLException e) {
-    // showAlertDialog(Alert.AlertType.ERROR, "Database Error", "Error updating user
-    // profile: " + e.getMessage());
-    // }
-    // }
-
     public void setUpTableView() {
         dateColumn.setCellValueFactory(new PropertyValueFactory<PastAppointment, LocalDate>("date"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<PastAppointment, LocalTime>("time"));
@@ -470,7 +456,6 @@ public class HomePageController {
     @FXML
     private void initialize() {
         editSection.visibleProperty().bind(allowEditSection);
-        changeAppointment.visibleProperty().bind(hideChange);
 
     }
 
