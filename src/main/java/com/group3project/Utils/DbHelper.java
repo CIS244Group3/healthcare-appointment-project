@@ -21,18 +21,13 @@ public class DbHelper {
 	}
 
 	public Connection getConnection() {
-		System.out.println("SHould print first");
-		System.out.println(dbtype);
 
 		Connection conn = null;
 		try {
 
 			Class.forName(ProjUtil.getProperty("db.driver"));
-			System.out.println("Going in " + ProjUtil.getProperty("db.url"));
 
 			conn = DriverManager.getConnection(ProjUtil.getProperty("db.url"));
-			System.out.println("SHould print second");
-			System.out.println(conn);
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -45,13 +40,11 @@ public class DbHelper {
 		try {
 			if (conn != null && !conn.isClosed()) {
 				conn.close();
-				System.out.println("I'm closing him up!");
 
 			}
 
 		} catch (SQLException e) {
 			System.out.println(e);
-			System.out.println("Made in hereerererer");
 
 			System.out.println(e.getMessage());
 		}
@@ -78,7 +71,8 @@ public class DbHelper {
 		ResultSet rs = null;
 		try {
 			// Statement stmt = conn.createStatement();
-			PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+			PreparedStatement stmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_SENSITIVE,
+					ResultSet.CONCUR_UPDATABLE);
 			rs = stmt.executeQuery();
 
 		} catch (SQLException e) {
